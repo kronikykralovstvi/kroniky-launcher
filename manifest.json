@@ -1,4 +1,3 @@
-
 {
   "version": "1.0.4",
   "launcherUrl": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/v1.0.4/KronikyKralovstviLauncher.exe",
@@ -7,3 +6,4 @@
   "updaterSha256": "e89210599fdef8df1b64be85e4f99ca51fb9cc5ee940a57dafc13bae4ef8f1a4",
   "files": []
 }
+
