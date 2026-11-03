@@ -16,6 +16,27 @@ jen chybějící nebo změněné soubory. Při nedostupném manifestu nebo pošk
 stažení launcher připojení nespustí; lze zkusit aktualizaci znovu. Hráč nepotřebuje
 GitHub účet ani .NET SDK. KCD:MP klient a zakoupená hra se instalují samostatně.
 
+## Volitelné sezónní efekty (herní ověření probíhá)
+
+Server řídí střídání počasí podle svého kalendáře pro všechny hráče. Pro volitelné
+vizuální efekty je připraveno napojení na [Seasonal Cycle 0.6.0 od autora Tim](https://www.nexusmods.com/kingdomcomedeliverance2/mods/3791).
+Sněžení a vzhled jednotlivých období ještě nejsou potvrzené herní zkouškou.
+
+1. Zavři hru a stáhni originální mod přímo z Nexusu.
+2. Rozbal složku `seasonal_cycle` do `KingdomComeDeliverance2/Mods` tak, aby
+   existoval soubor `Mods/seasonal_cycle/mod.manifest` a složka `Data` vedle něj.
+3. Pro napojení na server nespouštěj pomocné instalátory trvalých zimních textur.
+4. Připoj se běžně launcherem. Server dodá vlastní integrační skript; bez tohoto
+   volitelného modu funguje společné serverové počasí dál.
+
+Originální archivy Seasonal Cycle, Silver Lys Gear ani Additional Weapons
+nepřehráváme na GitHub a launcher je automaticky nestahuje. Další dva uvedené
+balíčky zatím nejsou součástí aktivního serverového katalogu. Nepřidávej je do
+spravovaného balíčku jen kvůli tomuto seznamu.
+
+Oprava ikon `/itemy`, prefaby štítů a serverový kalendář nevyžadují nové EXE
+launcheru; při připojení se používají aktuální serverové podklady.
+
 ## Jak vydat nové mody
 
 ### Přes web GitHubu
