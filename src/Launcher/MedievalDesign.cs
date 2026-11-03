@@ -55,7 +55,7 @@ internal sealed partial class LauncherForm
     private void Place(Control c,int x,int y,int w,int h,float font)
     {
         c.Dock=DockStyle.None;c.Anchor=AnchorStyles.Top|AnchorStyles.Left;c.TabIndex=designControls.Count;
-        c.AccessibleName=string.IsNullOrWhiteSpace(c.Text)?c.GetType().Name:c.Text;
+        c.AccessibleName=c==playerName?"Jméno hráče":null;
         surface.Controls.Add(c);designControls.Add((c,new Rectangle(x,y,w,h),font));
     }
     private void AddButton(string text,int x,int y,int w,int h,Action action,float font)

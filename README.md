@@ -1,15 +1,15 @@
 # Kroniky Království – launcher
 
 Windows launcher pro KCD:MP server Kroniky Království. Verze **1.1.0** přidává
-instalaci serverových modů přímo do složky hry. Projekt byl obnoven z vlastního
+středověký vzhled, živé novinky z webu a podepsané aktualizace launcheru i modů. Projekt byl obnoven z vlastního
 vydání 1.0.6, protože původní repozitář obsahoval jen aktualizační manifest.
 
 ## Pro hráče
 
 1. Spusť `KronikyKralovstviLauncher.exe` z nejnovějšího vydání.
 2. Úplně ukonči Kingdom Come: Deliverance II. Launcher se pokusí najít hru;
-   případně klikni na **Vybrat / změnit složku hry pro mody** a vyber složku s `Bin` a `Data`.
-3. Počkej na zprávu **Mody … jsou připravené**, zadej jméno a klikni na **HRÁT**.
+   případně klikni na **Nastavení hry** a vyber složku s `Bin` a `Data`.
+3. Počkej na zprávu **Mody … jsou připravené**, zadej jméno a klikni na **VSTOUPIT DO HRY**.
 
 Kontrola probíhá při otevření, ruční aktualizaci i před připojením. Stahují se
 jen chybějící nebo změněné soubory. Při nedostupném manifestu nebo poškozeném
