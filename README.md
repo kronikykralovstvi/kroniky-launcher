@@ -1,6 +1,6 @@
 # Kroniky Království – launcher
 
-Windows launcher pro KCD:MP server Kroniky Království. Verze **1.0.7** přidává
+Windows launcher pro KCD:MP server Kroniky Království. Verze **1.0.8** přidává
 instalaci serverových modů přímo do složky hry. Projekt byl obnoven z vlastního
 vydání 1.0.6, protože původní repozitář obsahoval jen aktualizační manifest.
 
@@ -53,7 +53,7 @@ nahraje klientské soubory, ověří jejich velikost i SHA-256 a až nakonec akt
 Výstupní složka musí být prázdná nebo nová. Při chybě před aktivací zůstane
 starý manifest aktivní; použij nový identifikátor vydání a zkus opravený balíček.
 
-Repozitář a výsledná modová vydání musí být veřejné. Launcher 1.0.7 načítá
+Repozitář a výsledná modová vydání musí být veřejné. Launcher 1.0.8 načítá
 manifest přímo z `raw.githubusercontent.com` z větve `main`; nemusí čekat na Pages.
 GitHub Pages ponech funkční na `https://kronikykralovstvi.github.io/kroniky-launcher/`
 kvůli automatickému přechodu starých launcherů 1.0.6. Běžná další verze modů
@@ -89,7 +89,7 @@ dotnet publish src/Launcher/Launcher.csproj -c Release -r win-x64 --self-contain
 Testy pokrývají instalaci, rozdílové aktualizace, kontrolní součty, ochranu cizích
 souborů, návrat po chybě, obnovu přerušené transakce, neplatné cesty a běžící hru.
 
-Tag `v1.0.7` spustí sestavení draftu launcher Release. Po ověření zveřejni EXE,
+Tag `v1.0.8` spustí sestavení draftu launcher Release. Po ověření zveřejni EXE,
 jeho SHA-256 a až poté nastav `version`, `launcherUrl`, `launcherSha256` v
 `manifest.json`. Zachovej funkční `updaterUrl` a `updaterSha256`. Staré pole
 `files` nech prázdné: launcher 1.0.6 by je instaloval do profilu Windows.

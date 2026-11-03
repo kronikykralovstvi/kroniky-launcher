@@ -3,11 +3,33 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 spec=importlib.util.spec_from_file_location('publisher',Path(__file__).parents[1]/'tools/publish_mods.py')
 module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
 
 class PublisherTests(unittest.TestCase):
+    def test_draft_verification_before_activation(self):
+        for valid in [False,True]:
+            with self.subTest(valid=valid), tempfile.TemporaryDirectory() as d:
+                root=Path(d);mods=root/'Mods';(mods/'armor').mkdir(parents=True)
+                (mods/'armor/mod.manifest').write_bytes(b'example')
+                prepared=root/'prepared';manifest=module.prepare(mods,'1',prepared)
+                row=manifest['files'][0];calls=[]
+                def fake(gh,*args):
+                    calls.append(args)
+                    if args[:2]==('release','view'):return json.dumps({'apiUrl':'https://api.github.com/releases/123'})
+                    if args==('api','https://api.github.com/releases/123'):
+                        return json.dumps({'assets':[{'name':row['url'].rsplit('/',1)[1],'size':row['size'],'digest':'sha256:'+row['sha256'] if valid else 'bad'}]})
+                    return '{}'
+                with patch.object(module,'run',side_effect=fake):
+                    if valid:module.finish('gh',prepared,manifest,None)
+                    else:
+                        with self.assertRaises(ValueError):module.finish('gh',prepared,manifest,None)
+                edits=[i for i,a in enumerate(calls) if a[:2]==('release','edit')]
+                puts=[i for i,a in enumerate(calls) if a[:3]==('api','--method','PUT')]
+                self.assertEqual(bool(edits),valid);self.assertEqual(bool(puts),valid)
+                if valid:self.assertLess(edits[0],puts[0])
     def test_client_only_and_hashes(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);mods=root/'Mods';(mods/'armor/Data').mkdir(parents=True)

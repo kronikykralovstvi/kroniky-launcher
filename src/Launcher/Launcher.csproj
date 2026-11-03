@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>KronikyKralovstviLauncher</AssemblyName>
-    <Version>1.0.7</Version>
+    <Version>1.0.8</Version>
     <ApplicationIcon>app.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <PublishSingleFile>true</PublishSingleFile>
@@ -16,6 +16,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="../Mods/*.cs" Link="Mods/%(Filename)%(Extension)" />
-    <EmbeddedResource Include="logo.png" />
+    <EmbeddedResource Include="logo.png" LogicalName="KronikyKralovstviLauncher.logo.png" />
   </ItemGroup>
 </Project>

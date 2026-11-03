@@ -73,12 +73,18 @@ def publish(gh, prepared, manifest):
     if pointer.returncode != 0 and 'HTTP 404' not in pointer.stderr:
         raise ValueError('Cannot read the current manifest: '+pointer.stderr)
     previous_sha=json.loads(pointer.stdout)['sha'] if pointer.returncode==0 else None
-    run(gh,'release','create',tag,'--repo',REPO,'--target','main','--draft','--title','Mody '+manifest['version'],'--notes','Klientské mody pro server Kroniky Království. Spravováno launcherem 1.0.7+.')
+    run(gh,'release','create',tag,'--repo',REPO,'--target','main','--draft','--title','Mody '+manifest['version'],'--notes','Klientské mody pro server Kroniky Království. Spravováno launcherem 1.0.8+.')
     for file in sorted((prepared/'assets').iterdir()):
         print('Uploading',file.name,flush=True)
         run(gh,'release','upload',tag,str(file),'--repo',REPO)
     run(gh,'release','upload',tag,str(prepared/'mods-manifest.json'),'--repo',REPO)
-    remote=json.loads(run(gh,'api',f'repos/{REPO}/releases/tags/{tag}'))
+    finish(gh, prepared, manifest, previous_sha)
+
+def finish(gh, prepared, manifest, previous_sha):
+    tag='mods-'+manifest['version']
+    # A draft's tag may not exist yet; resolve its release ID through gh first.
+    info=json.loads(run(gh,'release','view',tag,'--repo',REPO,'--json','apiUrl'))
+    remote=json.loads(run(gh,'api',info['apiUrl']))
     uploaded={a['name']:a for a in remote['assets']}
     for item in manifest['files']:
         asset=item['url'].rsplit('/',1)[1]
