@@ -4,3 +4,6 @@ artifacts/
 .vs/
 *.user
 __pycache__/
+*.dpapi
+*.private.pem
+*recovery-key*

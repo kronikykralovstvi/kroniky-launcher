@@ -21,6 +21,9 @@ class PublisherTests(unittest.TestCase):
                     if args[:2]==('release','view'):return json.dumps({'apiUrl':'https://api.github.com/releases/123'})
                     if args==('api','https://api.github.com/releases/123'):
                         return json.dumps({'assets':[{'name':row['url'].rsplit('/',1)[1],'size':row['size'],'digest':'sha256:'+row['sha256'] if valid else 'bad'}]})
+                    if args==('api',f'repos/{module.REPO}/contents/manifest.json'):
+                        import base64
+                        return json.dumps({'content':base64.b64encode(b'{"version":"1.1.0"}').decode()})
                     return '{}'
                 with patch.object(module,'run',side_effect=fake):
                     if valid:module.finish('gh',prepared,manifest,None)
@@ -28,8 +31,8 @@ class PublisherTests(unittest.TestCase):
                         with self.assertRaises(ValueError):module.finish('gh',prepared,manifest,None)
                 edits=[i for i,a in enumerate(calls) if a[:2]==('release','edit')]
                 puts=[i for i,a in enumerate(calls) if a[:3]==('api','--method','PUT')]
-                self.assertEqual(bool(edits),valid);self.assertEqual(bool(puts),valid)
-                if valid:self.assertLess(edits[0],puts[0])
+                self.assertEqual(bool(edits),valid);self.assertFalse(puts)
+                if valid:self.assertTrue((prepared/'release-request.json').exists())
     def test_client_only_and_hashes(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);mods=root/'Mods';(mods/'armor/Data').mkdir(parents=True)

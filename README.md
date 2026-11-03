@@ -1,6 +1,6 @@
 # Kroniky Království – launcher
 
-Windows launcher pro KCD:MP server Kroniky Království. Verze **1.0.8** přidává
+Windows launcher pro KCD:MP server Kroniky Království. Verze **1.1.0** přidává
 instalaci serverových modů přímo do složky hry. Projekt byl obnoven z vlastního
 vydání 1.0.6, protože původní repozitář obsahoval jen aktualizační manifest.
 
@@ -26,8 +26,9 @@ GitHub účet ani .NET SDK. KCD:MP klient a zakoupená hra se instalují samosta
    například `podklady-2026-11-04`, a nahraj `Mods.zip`. Může zůstat jako draft.
 3. V **Actions > Vydat mody > Run workflow** vyplň tento tag, název ZIPu a novou
    verzi modů, například `2026.11.04.1`.
-4. Počkej na zelené dokončení. Hráči dostanou změny při další kontrole launcheru
-   nebo kliknutí na HRÁT. Neúspěšný běh není potvrzením vydání.
+4. Počkej na zelené dokončení a stáhni z vydání `release-request.json`.
+5. Na důvěryhodném administrátorském PC požadavek zkontroluj a podepiš pomocí
+   `Approve-Release.ps1`. Teprve podpis aktivuje nové mody. Viz [SECURITY.md](SECURITY.md).
 
 ### Z administrátorského PC
 
@@ -48,13 +49,13 @@ python tools/publish_mods.py --mods "C:\Balicek\Mods" --version 2026.11.03.1 --o
 ```
 
 Skript spočítá kontrolní součty, připraví soubory, vytvoří draft GitHub Release,
-nahraje klientské soubory, ověří jejich velikost i SHA-256 a až nakonec aktivuje
-`mods-manifest.json` v hlavní větvi. Bez `--publish` pouze připraví lokální podklady.
+nahraje klientské soubory, ověří jejich velikost i SHA-256 a vytvoří
+`release-request.json` pro následné lokální schválení a podepsání. Bez `--publish` pouze připraví lokální podklady.
 Výstupní složka musí být prázdná nebo nová. Při chybě před aktivací zůstane
 starý manifest aktivní; použij nový identifikátor vydání a zkus opravený balíček.
 
-Repozitář a výsledná modová vydání musí být veřejné. Launcher 1.0.8 načítá
-manifest přímo z `raw.githubusercontent.com` z větve `main`; nemusí čekat na Pages.
+Repozitář a výsledná modová vydání musí být veřejné. Launcher 1.1.0 načítá
+podepsaný manifest přímo z `raw.githubusercontent.com` z větve `main`; nemusí čekat na Pages.
 GitHub Pages ponech funkční na `https://kronikykralovstvi.github.io/kroniky-launcher/`
 kvůli automatickému přechodu starých launcherů 1.0.6. Běžná další verze modů
 **nevyžaduje nové EXE**.
@@ -74,9 +75,9 @@ Před výměnou se vše stáhne a ověří. Zálohy a stav jsou ve složce
 aktualizací obnoví předchozí soubory. Zálohy se automaticky nemažou; ponech
 dostatek místa pro stažení a předchozí verzi. Běžící hra blokuje aktualizaci.
 
-Pro návrat celého serveru k předchozím modům zveřejni dřívější `mods-manifest.json`
-z příslušného Release jako aktuální soubor v `main`; zachovej dostupné staré assets.
-Neodstraňuj staré Releases, dokud na ně odkazuje některý používaný manifest.
+Nouzové pozastavení, návrat k předchozím modům a zálohu podpisového klíče
+popisuje [SECURITY.md](SECURITY.md). Podepsané aktualizace neumožňují skrytý
+přístup do počítačů hráčů.
 
 ## Vývoj a vydání launcheru
 
@@ -89,12 +90,26 @@ dotnet publish src/Launcher/Launcher.csproj -c Release -r win-x64 --self-contain
 Testy pokrývají instalaci, rozdílové aktualizace, kontrolní součty, ochranu cizích
 souborů, návrat po chybě, obnovu přerušené transakce, neplatné cesty a běžící hru.
 
-Tag `v1.0.8` spustí sestavení draftu launcher Release. Po ověření zveřejni EXE,
+Tag `v1.1.0` spustí sestavení draftu launcher Release. Po ověření zveřejni EXE,
 jeho SHA-256 a až poté nastav `version`, `launcherUrl`, `launcherSha256` v
 `manifest.json`. Zachovej funkční `updaterUrl` a `updaterSha256`. Staré pole
 `files` nech prázdné: launcher 1.0.6 by je instaloval do profilu Windows.
-Nové mody používají samostatný `mods-manifest.json` (schemaVersion 1).
+Launcher 1.1.0 používá výhradně podepsaný `trusted-release.json`.
+`mods-manifest.json` zůstává historickým podkladem pro starší klienty.
+Před aktivací launcheru podepiš aktualizovaný požadavek včetně jeho EXE a hashů.
 
 Nejprve musí být dostupný modový manifest a jeho assets, teprve potom aktivuj
 nové EXE pro hráče. Původní launcher 1.0.6 se aktualizuje svým dosavadním updaterem.
 Jiné starší varianty bez funkční automatické aktualizace vyžadují nové EXE ručně.
+
+## Vzhled, odkazy a novinky
+
+Vzhled vychází z grafického návrhu provozovatele. Tlačítka jsou skutečné ovládací
+prvky, podporují klávesnici a přizpůsobují se velikosti okna.
+- Oficiální web: https://rpkronikykralovstvi.cz/
+- Discord: https://discord.gg/uYYEDDFPcF
+- Novinky se načítají ze stejného veřejného `/api/portal/news` jako web.
+- Přehled změn otevírá `/novinky/`; stav instalace ukazuje skutečnou verzi modů.
+
+Webové články se zobrazují jako text a obrázky. Nespouštějí skripty, neovládají
+instalátor a nemohou měnit důvěryhodné aktualizační zdroje.

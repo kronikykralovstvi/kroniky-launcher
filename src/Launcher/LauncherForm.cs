@@ -21,7 +21,7 @@ internal sealed partial class LauncherForm : Form
 
 	private const string JoinUri = "kcdmp://connect/176.9.102.179:25588";
 
-	private const string AppVersion = "1.0.8";
+	private const string AppVersion = "1.1.0";
 
 	private readonly Label status = new Label
 	{
@@ -38,15 +38,16 @@ internal sealed partial class LauncherForm : Form
 		Visible = false
 	};
 
-	private readonly Button play = new Button
+	private readonly Button play = new RoyalButton
 	{
-		Text = "HRÁT — PŘIPOJIT SE K SERVERU",
+		Gold = true,
+        Text = "HRÁT — PŘIPOJIT SE K SERVERU",
 		Height = 56,
 		Dock = DockStyle.Top,
 		Font = new Font("Segoe UI", 11f, FontStyle.Bold)
 	};
 
-	private readonly Button update = new Button
+	private readonly Button update = new RoyalButton
 	{
 		Text = "Zkontrolovat aktualizace",
 		Height = 38,
@@ -74,7 +75,7 @@ internal sealed partial class LauncherForm : Form
 
 	private readonly Label version = new Label
 	{
-		Text = "Launcher 1.0.8",
+		Text = "Launcher 1.1.0",
 		AutoSize = false,
 		Height = 26,
 		Dock = DockStyle.Bottom,
@@ -91,127 +92,16 @@ internal sealed partial class LauncherForm : Form
 		Timeout = TimeSpan.FromMinutes(30)
 	};
 
-	public LauncherForm()
-	{
-		try
-		{
-			string text = Path.Combine(AppContext.BaseDirectory, "logo.ico");
-			if (File.Exists(text))
-			{
-				Icon = new Icon(text);
-			}
-		}
-		catch
-		{
-		}
-		Text = "Kroniky království";
-		MinimumSize = new Size(680, 460);
-		Size = new Size(900, 740);
-		StartPosition = FormStartPosition.CenterScreen;
-		BackColor = Color.FromArgb(8, 19, 43);
-		ForeColor = Color.FromArgb(239, 225, 195);
-		Font = new Font("Segoe UI", 10f);
-		FormBorderStyle = FormBorderStyle.FixedSingle;
-		MaximizeBox = false;
-		Label value = new Label
-		{
-			Text = "KRONIKY KRÁLOVSTVÍ",
-			Dock = DockStyle.Top,
-			Height = 95,
-			TextAlign = ContentAlignment.MiddleCenter,
-			Font = new Font("Georgia", 25f, FontStyle.Bold),
-			ForeColor = Color.FromArgb(225, 184, 83)
-		};
-		PictureBox pictureBox = new PictureBox
-		{
-			Dock = DockStyle.Top,
-			Height = 130,
-			SizeMode = PictureBoxSizeMode.Zoom,
-			BackColor = Color.FromArgb(8, 19, 43)
-		};
-		try
-		{
-			using var logo = typeof(LauncherForm).Assembly.GetManifestResourceStream("KronikyKralovstviLauncher.logo.png");
-			if (logo != null)
-			{
-				using var loaded = Image.FromStream(logo);
-				pictureBox.Image = new Bitmap(loaded);
-			}
-		}
-		catch
-		{
-		}
-		Label value2 = new Label
-		{
-			Text = "České země • Roleplay • KCD:MP",
-			Dock = DockStyle.Top,
-			Height = 34,
-			TextAlign = ContentAlignment.MiddleCenter,
-			ForeColor = Color.FromArgb(205, 195, 176)
-		};
-		Panel panel = new Panel
-		{
-			Dock = DockStyle.Fill,
-			Padding = new Padding(70, 22, 70, 22)
-		};
-		play.FlatStyle = FlatStyle.Flat;
-		play.BackColor = Color.FromArgb(22, 48, 91);
-		play.ForeColor = Color.White;
-		play.FlatAppearance.BorderColor = Color.FromArgb(225, 184, 83);
-		update.FlatStyle = FlatStyle.Flat;
-		update.BackColor = Color.FromArgb(15, 32, 61);
-		update.ForeColor = ForeColor;
-		status.Text = "Připraveno. Zadej jméno své postavy a klikni na HRÁT.";
-		try
-		{
-			if (File.Exists(playerNameFile))
-			{
-				playerName.Text = File.ReadAllText(playerNameFile).Trim();
-			}
-		}
-		catch
-		{
-		}
-		if (string.IsNullOrWhiteSpace(playerName.Text))
-		{
-			playerName.Text = "Hrac";
-		}
-		gameFolder.Click += (_, _) => SelectGameFolder(true);
-		panel.Controls.Add(gameFolder);
-		panel.Controls.Add(update);
-		panel.Controls.Add(new Panel
-		{
-			Height = 12,
-			Dock = DockStyle.Top
-		});
-		panel.Controls.Add(play);
-		panel.Controls.Add(playerName);
-		panel.Controls.Add(playerNameLabel);
-		panel.Controls.Add(progress);
-		panel.Controls.Add(status);
-		panel.Controls.Add(new Panel
-		{
-			Height = 16,
-			Dock = DockStyle.Top
-		});
-		Controls.Add(panel);
-		Controls.Add(value2);
-		Controls.Add(pictureBox);
-		Controls.Add(value);
-		Controls.Add(version);
-		play.Click += async (object? _, EventArgs _) =>
-		{
-			if (await CheckAndInstallUpdatesAsync(false)) await JoinServerAsync();
-		};
-		update.Click += async (object? _, EventArgs _) =>
-		{
-			await CheckAndInstallUpdatesAsync(showNoUpdate: true);
-		};
-		Shown += async (object? _, EventArgs _) =>
-		{
-			await CheckAndInstallUpdatesAsync(showNoUpdate: false);
-		};
-	}
+    public LauncherForm()
+    {
+        InitializeDesign();
+        try { if(File.Exists(playerNameFile))playerName.Text=File.ReadAllText(playerNameFile).Trim(); } catch { }
+        play.Click+=async(_,_)=>{if(await CheckAndInstallUpdatesAsync(false))await JoinServerAsync();};
+        update.Click+=async(_,_)=>await CheckAndInstallUpdatesAsync(true);
+        gameFolder.Click+=(_,_)=>SelectGameFolder(true);
+        foreach(var card in newsCards)card.Click+=(_,_)=>OpenLink(card.ArticleUrl??Website+"novinky/");
+        Shown+=async(_,_)=>await Task.WhenAll(RefreshNews(),CheckAndInstallUpdatesAsync(false));
+    }
 
 	private Task JoinServerAsync()
 	{
@@ -309,11 +199,16 @@ internal sealed partial class LauncherForm : Form
         try
         {
             Directory.CreateDirectory(root);
-            using var response = await http.GetAsync(ManifestUrl + "?t=" + DateTimeOffset.UtcNow.ToUnixTimeSeconds());
-            response.EnsureSuccessStatusCode();
-            var manifest = JsonSerializer.Deserialize<UpdateManifest>(await response.Content.ReadAsStringAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true })
-                ?? throw new InvalidDataException("Neplatný manifest launcheru.");
-            if (Version.TryParse(manifest.Version, out var latest) && latest > Version.Parse(AppVersion))
+            var stampPath=Path.Combine(root,"trusted-sequence.txt");
+            long seen=File.Exists(stampPath)?long.Parse(File.ReadAllText(stampPath)):0;
+            using var timeout=new CancellationTokenSource(TimeSpan.FromSeconds(30));
+            var signed=await Mods.ReleaseTrust.DownloadSmall(http,"https://raw.githubusercontent.com/kronikykralovstvi/kroniky-launcher/main/trusted-release.json?t="+DateTimeOffset.UtcNow.ToUnixTimeSeconds(),2*1024*1024,timeout.Token);
+            var trusted=Mods.ReleaseTrust.Verify(signed,seen);
+            File.WriteAllText(stampPath+".tmp",trusted.Sequence.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            File.Move(stampPath+".tmp",stampPath,true);
+            if(trusted.Paused){status.Text=string.IsNullOrWhiteSpace(trusted.Message)?"Administrace dočasně pozastavila distribuci.":trusted.Message;return false;}
+            var manifest=new UpdateManifest{Version=trusted.Launcher.Version,LauncherUrl=trusted.Launcher.LauncherUrl,LauncherSha256=trusted.Launcher.LauncherSha256,UpdaterUrl=trusted.Launcher.UpdaterUrl,UpdaterSha256=trusted.Launcher.UpdaterSha256};
+            if (Version.Parse(manifest.Version) > Version.Parse(AppVersion))
             {
                 await StartSelfUpdateAsync(manifest);
                 return false;
@@ -321,13 +216,11 @@ internal sealed partial class LauncherForm : Form
             var game = SelectGameFolder(false);
             if (game is null) { status.Text = "Nejdřív vyber hlavní složku Kingdom Come: Deliverance II."; return false; }
             EnsureGameStopped();
-            using var modsResponse = await http.GetAsync(ModsManifestUrl + "?t=" + DateTimeOffset.UtcNow.ToUnixTimeSeconds());
-            modsResponse.EnsureSuccessStatusCode();
-            var mods = JsonSerializer.Deserialize<Mods.ModManifest>(await modsResponse.Content.ReadAsStringAsync(), Mods.ModSync.Json)
-                ?? throw new InvalidDataException("Neplatný manifest modů.");
+            var mods=trusted.Mods;
             var sync = new Mods.ModSync(http, EnsureGameStopped);
             await sync.Install(game, mods, message => status.Text = message);
             status.Text = "Mody " + mods.Version + " jsou připravené. Můžeš hrát.";
+            releaseLabel.Text="Launcher "+AppVersion+" • mody "+mods.Version+" • podpis ověřen";
             if (showNoUpdate) MessageBox.Show(this, "Mody jsou zkontrolované a nainstalované.", "Kroniky království");
             return true;
         }
@@ -355,7 +248,7 @@ internal sealed partial class LauncherForm : Form
 		}
 		Directory.CreateDirectory(root);
 		string updaterPath = Path.Combine(root, "KronikyUpdater.exe");
-		byte[] array = await http.GetByteArrayAsync(result);
+		byte[] array = await Mods.ReleaseTrust.DownloadSmall(http, result!.AbsoluteUri, 100*1024*1024);
 		if (!Convert.ToHexString(SHA256.HashData(array)).Equals(manifest.UpdaterSha256, StringComparison.OrdinalIgnoreCase))
 		{
 			throw new InvalidDataException("Kontrola SHA-256 aktualizačního programu selhala.");
@@ -382,7 +275,8 @@ internal sealed partial class LauncherForm : Form
 		{
 			throw new InvalidOperationException("Aktualizační program se nepodařilo spustit.");
 		}
-		status.Text = "Instaluji novou verzi launcheru…";
+		File.WriteAllText(playerNameFile,playerName.Text.Trim());
+        status.Text = "Instaluji novou verzi launcheru…";
 		await Task.Delay(300);
 		Environment.Exit(0);
 	}

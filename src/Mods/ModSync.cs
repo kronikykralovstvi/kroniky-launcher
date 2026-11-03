@@ -80,7 +80,7 @@ public sealed class ModSync
             if (f is null) throw new InvalidDataException("Prázdná definice souboru.");
             SafePath(root, f.Path);
             if (!seen.Add(f.Path) || !Regex.IsMatch(f.Sha256, "^[a-fA-F0-9]{64}$") || f.Size < 0 || f.Size > 8L * 1024 * 1024 * 1024 ||
-                !Uri.TryCreate(f.Url, UriKind.Absolute, out var uri) || uri.Scheme != "https" || !string.IsNullOrEmpty(uri.UserInfo))
+                !ReleaseTrust.AllowedAsset(f.Url))
                 throw new InvalidDataException("Neplatná definice souboru: " + f.Path);
         }
     }

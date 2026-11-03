@@ -7,7 +7,8 @@ using System.Text.Json;
 static string Sha(string value) => Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(value))).ToLowerInvariant();
 static void Assert(bool condition, string message) { if (!condition) throw new Exception(message); }
 static async Task Fails(Func<Task> action) { try { await action(); } catch { return; } throw new Exception("Expected rejection"); }
-static ModManifest Manifest(params (string path, string body)[] rows) => new() { SchemaVersion = 1, Version = "test", Files = rows.Select(r => new ModFile { Path = r.path, Url = "https://example.test/" + r.path, Size = Encoding.UTF8.GetByteCount(r.body), Sha256 = Sha(r.body) }).ToList() };
+static ModManifest Manifest(params (string path, string body)[] rows) => new() { SchemaVersion = 1, Version = "test", Files = rows.Select(r => new ModFile { Path = r.path, Url = "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/test/" + Uri.EscapeDataString(r.path.Replace("/", "_")), Size = Encoding.UTF8.GetByteCount(r.body), Sha256 = Sha(r.body) }).ToList() };
+SecurityTests.Run();
 var root = Path.Combine(Path.GetTempPath(), "kk-mod-tests-" + Guid.NewGuid().ToString("N"));
 Directory.CreateDirectory(root);
 var handler = new FakeHandler(); using var http = new HttpClient(handler);
@@ -62,7 +63,7 @@ sealed class FakeHandler : HttpMessageHandler
     protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,CancellationToken ct)
     {
         Requests++;
-        var path=request.RequestUri!.AbsolutePath.TrimStart('/');
+        var path=request.RequestUri!.AbsolutePath.Split('/')[^1].Replace("_", "/");
         return Task.FromResult(Files.TryGetValue(path,out var body)
             ? new HttpResponseMessage(HttpStatusCode.OK){Content=new ByteArrayContent(Encoding.UTF8.GetBytes(body))}
             : new HttpResponseMessage(HttpStatusCode.NotFound));

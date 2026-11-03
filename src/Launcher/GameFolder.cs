@@ -6,7 +6,7 @@ namespace KronikyLauncher;
 internal sealed partial class LauncherForm
 {
     private const string ModsManifestUrl = "https://raw.githubusercontent.com/kronikykralovstvi/kroniky-launcher/main/mods-manifest.json";
-    private readonly Button gameFolder = new() { Text = "Vybrat / změnit složku hry pro mody", Dock = DockStyle.Top, Height = 38 };
+    private readonly Button gameFolder = new RoyalButton() { Text = "Vybrat / změnit složku hry pro mody", Dock = DockStyle.Top, Height = 38 };
     private string GamePathFile => Path.Combine(root, "gamepath.txt");
 
     private static bool IsGameRoot(string path)
@@ -53,7 +53,7 @@ internal sealed partial class LauncherForm
         Directory.CreateDirectory(root);
         path = Path.GetFullPath(path);
         File.WriteAllText(GamePathFile, path);
-        gameFolder.Text = "Složka hry: " + path;
+        gameFolder.Text = "Nastavení hry";
         return path;
     }
     private static void EnsureGameStopped()

@@ -64,7 +64,7 @@ def run(gh, *args):
 
 def publish(gh, prepared, manifest):
     tag = 'mods-'+manifest['version']
-    # A fresh tag makes the published payload immutable. Never overwrite a live release.
+    # Never overwrite an existing release. Signing is a separate local approval.
     probe = subprocess.run([gh,'release','view',tag,'--repo',REPO],capture_output=True)
     if probe.returncode == 0:
         raise ValueError('This release already exists. Use a new version; no live asset was replaced.')
@@ -93,15 +93,14 @@ def finish(gh, prepared, manifest, previous_sha):
         if uploaded[asset].get('digest') != 'sha256:'+item['sha256']:
             raise ValueError('GitHub asset SHA-256 verification failed: '+asset)
     run(gh,'release','edit',tag,'--repo',REPO,'--draft=false','--latest=false')
-    # CAS against the state at publication start: do not overwrite an intervening release.
-    payload={'message':'Publish mod pack '+manifest['version'],'content':base64.b64encode((prepared/'mods-manifest.json').read_bytes()).decode(),'branch':'main'}
-    if previous_sha is not None:
-        payload['sha']=previous_sha
-    with tempfile.TemporaryDirectory() as temp:
-        request=Path(temp)/'request.json';request.write_text(json.dumps(payload),encoding='utf-8')
-        run(gh,'api','--method','PUT',f'repos/{REPO}/contents/mods-manifest.json','--input',str(request))
-    print('Published:',f'https://github.com/{REPO}/releases/tag/{tag}')
-    print('Players receive this pack when they next check updates or press Play.')
+    current=json.loads(run(gh,'api',f'repos/{REPO}/contents/manifest.json'))
+    launcher=json.loads(base64.b64decode(current['content']))
+    request={'schemaVersion':1,'sequence':0,'issuedAt':None,'paused':False,'message':'','launcher':launcher,'mods':manifest}
+    request_file=prepared/'release-request.json'
+    request_file.write_text(json.dumps(request,ensure_ascii=False,indent=2),encoding='utf-8')
+    run(gh,'release','upload',tag,str(request_file),'--repo',REPO)
+    print('Prepared:',f'https://github.com/{REPO}/releases/tag/{tag}')
+    print('NOT ACTIVATED: review release-request.json and sign on the trusted admin PC with Approve-Release.ps1.')
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
