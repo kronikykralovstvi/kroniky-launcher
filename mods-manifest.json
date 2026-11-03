@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "version": "2026.11.03.1",
+  "files": [
+    {
+      "path": "Mods/horse_armor/Data/horse_armor.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/b8cfabbc40e624f11bedd9e4524a2b1f5477083ee6924b11a010f36f0ae3d4c1.bin",
+      "sha256": "b8cfabbc40e624f11bedd9e4524a2b1f5477083ee6924b11a010f36f0ae3d4c1",
+      "size": 3775
+    },
+    {
+      "path": "Mods/horse_armor/Localization/Czech_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/9250736bd89f610a81d0eca4db7a9edaeade0c8d17e72a6b99fe489a8fbfdf9a.bin",
+      "sha256": "9250736bd89f610a81d0eca4db7a9edaeade0c8d17e72a6b99fe489a8fbfdf9a",
+      "size": 727
+    },
+    {
+      "path": "Mods/horse_armor/Localization/English_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/9250736bd89f610a81d0eca4db7a9edaeade0c8d17e72a6b99fe489a8fbfdf9a.bin",
+      "sha256": "9250736bd89f610a81d0eca4db7a9edaeade0c8d17e72a6b99fe489a8fbfdf9a",
+      "size": 727
+    },
+    {
+      "path": "Mods/horse_armor/mod.manifest",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/4c33ad05332738b5fc961380e05f93ec3f01169e8e245086cedd7d8b5a16be91.bin",
+      "sha256": "4c33ad05332738b5fc961380e05f93ec3f01169e8e245086cedd7d8b5a16be91",
+      "size": 511
+    },
+    {
+      "path": "Mods/jesterhood/data/jesterhood.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/4e482a15604c1a24359554e4e571dfade5ffbc18c261e6b1eca4f8644d515be0.bin",
+      "sha256": "4e482a15604c1a24359554e4e571dfade5ffbc18c261e6b1eca4f8644d515be0",
+      "size": 2817812
+    },
+    {
+      "path": "Mods/jesterhood/mod.manifest",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/af86f19f64c104a5ea718a67cb27c0d6ec327298b7fbdf776d6f29e8c212cf9c.bin",
+      "sha256": "af86f19f64c104a5ea718a67cb27c0d6ec327298b7fbdf776d6f29e8c212cf9c",
+      "size": 453
+    },
+    {
+      "path": "Mods/kk_free/Data/kk_free.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/4fd7d28981bfca13ec8180a182c9e46ff1798dc612a8734ede207c328758cce0.bin",
+      "sha256": "4fd7d28981bfca13ec8180a182c9e46ff1798dc612a8734ede207c328758cce0",
+      "size": 515668966
+    },
+    {
+      "path": "Mods/kk_free/Localization/Czech_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/5f7a5e26e38a657d740776f05ad65416993dbd2cfb719def9ea590702db04a20.bin",
+      "sha256": "5f7a5e26e38a657d740776f05ad65416993dbd2cfb719def9ea590702db04a20",
+      "size": 1434
+    },
+    {
+      "path": "Mods/kk_free/Localization/English_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/2f5fd26fad2f996719d3195741ad1fae8b67bb17f874c6dc90a2f0192ccfcb9d.bin",
+      "sha256": "2f5fd26fad2f996719d3195741ad1fae8b67bb17f874c6dc90a2f0192ccfcb9d",
+      "size": 1290
+    },
+    {
+      "path": "Mods/kk_free/mod.manifest",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/32997bf67fd56a683f013be0463032692eef3b0d64dfc72eb3f5872db2309d14.bin",
+      "sha256": "32997bf67fd56a683f013be0463032692eef3b0d64dfc72eb3f5872db2309d14",
+      "size": 430
+    },
+    {
+      "path": "Mods/NPC_Plate_Armor/Data/Data.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/6ea3263df439089cfc66b566725ee9d75d5905b088bd3104c672e5cc4847907a.bin",
+      "sha256": "6ea3263df439089cfc66b566725ee9d75d5905b088bd3104c672e5cc4847907a",
+      "size": 57946
+    },
+    {
+      "path": "Mods/NPC_Plate_Armor/Localization/Czech_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/4a94cf89b5ae7b618b61f701223631417482b001e364c72cbc9b1d809fd4cddd.bin",
+      "sha256": "4a94cf89b5ae7b618b61f701223631417482b001e364c72cbc9b1d809fd4cddd",
+      "size": 3417
+    },
+    {
+      "path": "Mods/NPC_Plate_Armor/Localization/English_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/4a94cf89b5ae7b618b61f701223631417482b001e364c72cbc9b1d809fd4cddd.bin",
+      "sha256": "4a94cf89b5ae7b618b61f701223631417482b001e364c72cbc9b1d809fd4cddd",
+      "size": 3417
+    },
+    {
+      "path": "Mods/NPC_Plate_Armor/Localization/German_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/fb84ed2658463b110a2a809819c4a5aa7000f091e4d519ac7b11c51621b42bf3.bin",
+      "sha256": "fb84ed2658463b110a2a809819c4a5aa7000f091e4d519ac7b11c51621b42bf3",
+      "size": 6454
+    },
+    {
+      "path": "Mods/NPC_Plate_Armor/mod.manifest",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/6201f55a0103bef4df84f4869f57adecaba13c2b8be1ad7a5bb5faaf437807a0.bin",
+      "sha256": "6201f55a0103bef4df84f4869f57adecaba13c2b8be1ad7a5bb5faaf437807a0",
+      "size": 446
+    },
+    {
+      "path": "Mods/rumpus_sax_brig_variations/Data/rumpus_sax_brig_variations.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/26e200ebdf1d95e0fd831f9c41d8e1cd55a2e1cc64633eca41ad55266a4c9d1e.bin",
+      "sha256": "26e200ebdf1d95e0fd831f9c41d8e1cd55a2e1cc64633eca41ad55266a4c9d1e",
+      "size": 117102
+    },
+    {
+      "path": "Mods/rumpus_sax_brig_variations/Localization/Czech_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/59ca99031aea5a4f2d240d606384585754315d21657bbf5dfcccad5aee7cbda5.bin",
+      "sha256": "59ca99031aea5a4f2d240d606384585754315d21657bbf5dfcccad5aee7cbda5",
+      "size": 529
+    },
+    {
+      "path": "Mods/rumpus_sax_brig_variations/Localization/English_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/59ca99031aea5a4f2d240d606384585754315d21657bbf5dfcccad5aee7cbda5.bin",
+      "sha256": "59ca99031aea5a4f2d240d606384585754315d21657bbf5dfcccad5aee7cbda5",
+      "size": 529
+    },
+    {
+      "path": "Mods/rumpus_sax_brig_variations/mod.manifest",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/7cd83212b2ab7df1a2524e3dd2ce4036d83f69d4fef7798e6c7017a044a934e3.bin",
+      "sha256": "7cd83212b2ab7df1a2524e3dd2ce4036d83f69d4fef7798e6c7017a044a934e3",
+      "size": 462
+    },
+    {
+      "path": "Mods/silver_lys_brigandine_mod/Data/silver_lys_brigandine_mod.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/ebc59557502e76950371770aea25a8306c4e5c0698d748781d770e5d739db93d.bin",
+      "sha256": "ebc59557502e76950371770aea25a8306c4e5c0698d748781d770e5d739db93d",
+      "size": 48384639
+    },
+    {
+      "path": "Mods/silver_lys_brigandine_mod/Localization/Czech_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/f53924d935b76c044d77a96bace75219a0f9c5cf9666d15ab7b2fee57fcfc315.bin",
+      "sha256": "f53924d935b76c044d77a96bace75219a0f9c5cf9666d15ab7b2fee57fcfc315",
+      "size": 1342
+    },
+    {
+      "path": "Mods/silver_lys_brigandine_mod/Localization/English_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/a1ed5e4e3b6d1f896c92dc68f9d7935cbbf2f8bc2baa176e24020e9ba1fbeb3e.bin",
+      "sha256": "a1ed5e4e3b6d1f896c92dc68f9d7935cbbf2f8bc2baa176e24020e9ba1fbeb3e",
+      "size": 1084
+    },
+    {
+      "path": "Mods/silver_lys_brigandine_mod/Localization/German_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/f416943916c65346d9536c11b6926368cba792aea14074861e937c8a93d94b1e.bin",
+      "sha256": "f416943916c65346d9536c11b6926368cba792aea14074861e937c8a93d94b1e",
+      "size": 1327
+    },
+    {
+      "path": "Mods/silver_lys_brigandine_mod/mod.manifest",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/01ac77b200089ac45999fee3f86d2d47d2c8a7db93dd101f7078bdd356f311da.bin",
+      "sha256": "01ac77b200089ac45999fee3f86d2d47d2c8a7db93dd101f7078bdd356f311da",
+      "size": 350
+    },
+    {
+      "path": "Mods/sl_swords_shields_mod/Data/sl_swords_shields_v1-2-1.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/b44d1a01189c6cb0c559a470c3b1747f5e9af0bcd61af33c7b48e33d1846e469.bin",
+      "sha256": "b44d1a01189c6cb0c559a470c3b1747f5e9af0bcd61af33c7b48e33d1846e469",
+      "size": 162320820
+    },
+    {
+      "path": "Mods/sl_swords_shields_mod/Localization/Czech_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/0b1df64b8e01983bb7da94527f7ce510e813dad6abb3ab58b484f3e909d377f0.bin",
+      "sha256": "0b1df64b8e01983bb7da94527f7ce510e813dad6abb3ab58b484f3e909d377f0",
+      "size": 1523
+    },
+    {
+      "path": "Mods/sl_swords_shields_mod/Localization/German_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/67b996c808ac28fb932c05de53148ab1d743fc9212c92e840527eaea684b625a.bin",
+      "sha256": "67b996c808ac28fb932c05de53148ab1d743fc9212c92e840527eaea684b625a",
+      "size": 1498
+    },
+    {
+      "path": "Mods/sl_swords_shields_mod/mod.manifest",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/6889980a0ccb4d2906ef504b75a2a4855545b09e5c32f5a97c50e85af93b12b3.bin",
+      "sha256": "6889980a0ccb4d2906ef504b75a2a4855545b09e5c32f5a97c50e85af93b12b3",
+      "size": 359
+    }
+  ]
+}
