@@ -1,0 +1,41 @@
+name: Vydat mody
+on:
+  workflow_dispatch:
+    inputs:
+      source_release:
+        description: 'Tag release s nahraným klientským ZIPem (např. podklady-2026-11-04)'
+        required: true
+      asset:
+        description: 'Přesný název ZIPu; uvnitř musí být jen složka Mods'
+        required: true
+        default: 'Mods.zip'
+      version:
+        description: 'Nová unikátní verze balíčku (např. 2026.11.04.1)'
+        required: true
+permissions:
+  contents: write
+concurrency:
+  group: publish-mods
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare and publish client files
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RELEASE: ${{ inputs.source_release }}
+          SOURCE_ASSET: ${{ inputs.asset }}
+          MOD_VERSION: ${{ inputs.version }}
+        run: |
+          if ($env:SOURCE_ASSET -notmatch '^[A-Za-z0-9][A-Za-z0-9._-]*\.zip$') { throw 'Use a simple ZIP asset filename' }
+          gh release download $env:SOURCE_RELEASE --repo $env:GITHUB_REPOSITORY --pattern $env:SOURCE_ASSET --dir incoming
+          if ($LASTEXITCODE -ne 0) { throw 'Download failed' }
+          python tools/unpack_mods.py "incoming/$env:SOURCE_ASSET" unpacked
+          if ($LASTEXITCODE -ne 0) { throw 'Invalid Mods ZIP' }
+          python tools/publish_mods.py --mods unpacked/Mods --version $env:MOD_VERSION --output prepared --publish
+          if ($LASTEXITCODE -ne 0) { throw 'Publication failed; inspect the draft release' }

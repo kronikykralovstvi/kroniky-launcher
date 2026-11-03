@@ -1,0 +1,25 @@
+name: Build launcher release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - run: dotnet run --project tests/Mods.Tests.csproj
+      - run: dotnet publish src/Launcher/Launcher.csproj -c Release -r win-x64 --self-contained true -o artifacts/launcher
+      - name: Prepare draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $version = (Select-Xml -Path src/Launcher/Launcher.csproj -XPath '//Version').Node.InnerText
+          if ($env:GITHUB_REF_NAME -ne "v$version") { throw 'Tag and launcher version differ' }
+          $hash = (Get-FileHash artifacts/launcher/KronikyKralovstviLauncher.exe -Algorithm SHA256).Hash.ToLower()
+          "$hash  KronikyKralovstviLauncher.exe" | Set-Content artifacts/launcher/SHA256SUMS.txt
+          gh release create $env:GITHUB_REF_NAME artifacts/launcher/KronikyKralovstviLauncher.exe artifacts/launcher/SHA256SUMS.txt --draft --title "Launcher $version" --notes 'Automatická instalace a aktualizace modů. Před aktivací proveďte kontrolu vydání.'
