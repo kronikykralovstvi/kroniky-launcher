@@ -37,8 +37,10 @@ Directory.Delete(Path.Combine(root,b));
 await File.WriteAllTextAsync(Path.Combine(root,a),"personal edit");
 await Fails(()=>sync.Install(root,Manifest((b,"two")),_=>{}));
 Assert(File.ReadAllText(Path.Combine(root,a))=="personal edit","edited obsolete protected");
-foreach(var path in new[]{"../outside", "Mods/x/../../bad", "Mods/x/C:/bad", "Mods/x/a\\b", "Mods/x/NUL.txt", "Mods/x/a.", "Mods/KcdMp/file", "Mods/.hidden/file", "mods/x/file"})
+foreach(var path in new[]{"../outside", "Mods/x/../../bad", "Mods/x/C:/bad", "Mods/x/a\\b", "Mods/x/NUL.txt", "Mods/x/a.", "Mods/KcdMp/file", "Mods/.hidden/file", "mods/x/file", "Data/Tables.pak", "Data/other.pak", "Data/kk_editor_collection.pak/extra", "Data/../kk_editor_collection.pak", "data/kk_editor_collection.pak"})
     await Fails(()=>sync.Install(root,Manifest((path,"x")),_=>{}));
+string editor = "Data/kk_editor_collection.pak";
+Assert(ModSync.SafePath(root, editor)==Path.Combine(root,"Data","kk_editor_collection.pak"), "only dedicated editor catalogue allowed");
 var duplicate=Manifest((a,"one"),(a.ToUpperInvariant().Replace("MODS/","Mods/"),"one"));
 await Fails(()=>sync.Install(root,duplicate,_=>{}));
 var running = new ModSync(http,()=>throw new IOException("game running"));
@@ -53,6 +55,19 @@ File.WriteAllText(Path.Combine(control,"pending.json"),JsonSerializer.Serialize(
 handler.Files[a]="three";
 Assert(await sync.Install(root,Manifest((a,"three")),_=>{})==0,"crash recovery before synchronization");
 Assert(File.ReadAllText(Path.Combine(root,a))=="three","recovered content");
+// The editor catalogue must use the same verified transaction path as mods.
+var editorRoot = Path.Combine(root, "editor-fixture");
+Directory.CreateDirectory(Path.Combine(editorRoot, "Data"));
+File.WriteAllText(Path.Combine(editorRoot, "Data/Tables.pak"), "base game");
+handler.Files[editor] = "catalogue v1";
+Assert(await sync.Install(editorRoot, Manifest((editor,"catalogue v1")), _=>{}) == 1, "editor install");
+Assert(await sync.Install(editorRoot, Manifest((editor,"catalogue v1")), _=>{}) == 0, "editor no-op");
+handler.Files[editor] = "corrupt data";
+await Fails(()=>sync.Install(editorRoot, Manifest((editor,"catalogue v2")), _=>{}));
+Assert(File.ReadAllText(Path.Combine(editorRoot,editor))=="catalogue v1", "editor bad hash preserves catalogue");
+handler.Files[editor] = "catalogue v2";
+Assert(await sync.Install(editorRoot, Manifest((editor,"catalogue v2")), _=>{}) == 1, "editor update");
+Assert(File.ReadAllText(Path.Combine(editorRoot,"Data/Tables.pak"))=="base game", "base game preserved");
 Console.WriteLine("PASS: install, delta/no-op, obsolete ownership, unrelated files, hash failure, rollback, crash recovery, path validation, duplicate paths, running game.");
 Console.WriteLine("Fixtures: "+root);
 
@@ -63,8 +78,9 @@ sealed class FakeHandler : HttpMessageHandler
     protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,CancellationToken ct)
     {
         Requests++;
-        var path=request.RequestUri!.AbsolutePath.Split('/')[^1].Replace("_", "/");
-        return Task.FromResult(Files.TryGetValue(path,out var body)
+        var asset=request.RequestUri!.AbsolutePath.Split('/')[^1];
+        var path=Files.Keys.SingleOrDefault(p=>Uri.EscapeDataString(p.Replace("/", "_"))==asset);
+        return Task.FromResult(path is not null && Files.TryGetValue(path,out var body)
             ? new HttpResponseMessage(HttpStatusCode.OK){Content=new ByteArrayContent(Encoding.UTF8.GetBytes(body))}
             : new HttpResponseMessage(HttpStatusCode.NotFound));
     }

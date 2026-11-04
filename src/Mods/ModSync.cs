@@ -48,7 +48,10 @@ public sealed class ModSync
     public static string SafePath(string root, string relative)
     {
         var parts = relative.Split('/');
-        if (parts.Length < 3 || parts[0] != "Mods" || parts.Any(p =>
+        // Native KCD:MP editor indexes Data/*.pak, not the game's Mods folder.
+        // Permit only our dedicated catalogue, never arbitrary base-game files.
+        bool editorCatalogue = relative == "Data/kk_editor_collection.pak";
+        if ((!editorCatalogue && (parts.Length < 3 || parts[0] != "Mods")) || parts.Any(p =>
             string.IsNullOrWhiteSpace(p) || p is "." or ".." || p.EndsWith('.') || p.EndsWith(' ') ||
             p.Any(c => c < 32 || "<>:\"\\|?*".Contains(c)) ||
             Regex.IsMatch(p, @"^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\.|$)", RegexOptions.IgnoreCase)) ||
