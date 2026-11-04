@@ -1,7 +1,7 @@
 {
-  "version": "1.1.0",
-  "launcherUrl": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/v1.1.0/KronikyKralovstviLauncher.exe",
-  "launcherSha256": "8b7166ce677263e376ff7a0e9e504be2b544b742fe78827aa663f91719b32b24",
+  "version": "1.1.1",
+  "launcherUrl": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/v1.1.1/KronikyKralovstviLauncher.exe",
+  "launcherSha256": "3eb6d69513f32d091f3f0bcdb16233724b5ad3da31ee59a307d4de0cc0cb40f2",
   "updaterUrl": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/v1.0.3/KronikyUpdater.exe",
   "updaterSha256": "e89210599fdef8df1b64be85e4f99ca51fb9cc5ee940a57dafc13bae4ef8f1a4",
   "files": []
