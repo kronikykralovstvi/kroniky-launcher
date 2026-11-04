@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": "2026.11.04.4",
+  "version": "2026.11.04.5",
   "files": [
     {
       "path": "Mods/aerondight/Data/aerondight.pak",
@@ -673,6 +673,198 @@
       "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.1/438d4ea09f0e9254a2304a0d7a64892c68ef078c25672a53a29f38d7a5596eae.bin",
       "sha256": "438d4ea09f0e9254a2304a0d7a64892c68ef078c25672a53a29f38d7a5596eae",
       "size": 332
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Data/barbora_interior.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/3baf667fc772a5c8464533e7547f4c97ca8e29bacbd5d30bc60f9aeabc5bfa3b.bin",
+      "sha256": "3baf667fc772a5c8464533e7547f4c97ca8e29bacbd5d30bc60f9aeabc5bfa3b",
+      "size": 22758883
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Data/churchinteriormod.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/6bf96d86591a2b6eb87afd9fd4be9f722a3a0e9d0f5f1a12a664a904fc8209f7.bin",
+      "sha256": "6bf96d86591a2b6eb87afd9fd4be9f722a3a0e9d0f5f1a12a664a904fc8209f7",
+      "size": 299754
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Data/grunta_interior.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/23e51fd2696926cd002ef65d369170c4cb642cc120d4abcaef20de129496a5ae.bin",
+      "sha256": "23e51fd2696926cd002ef65d369170c4cb642cc120d4abcaef20de129496a5ae",
+      "size": 48386625
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Data/gruntachurch_interior.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/e545364753f4bc46b5cd47170b9c8cf63b4874722d0f1415e229a8f689319e7c.bin",
+      "sha256": "e545364753f4bc46b5cd47170b9c8cf63b4874722d0f1415e229a8f689319e7c",
+      "size": 41430394
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Data/kostelni_interior.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/06003ca86fb3956907302e19c90dd627b313a0d57fa42c5c409d1dd16d5ac82f.bin",
+      "sha256": "06003ca86fb3956907302e19c90dd627b313a0d57fa42c5c409d1dd16d5ac82f",
+      "size": 221969350
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Data/Levels/kutnohorsko/church_level_kutnohorsko.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/218a001928a9061f5d98e6b83f39a176b34e82b015e804957df595cbfc67fca7.bin",
+      "sha256": "218a001928a9061f5d98e6b83f39a176b34e82b015e804957df595cbfc67fca7",
+      "size": 1060989935
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Data/Levels/kutnohorsko/kostelni_interior.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/ebb6ba2f6b76c6c514e2ae6dcfee08332b962976a5bab64d55a2c1d9727b7143.bin",
+      "sha256": "ebb6ba2f6b76c6c514e2ae6dcfee08332b962976a5bab64d55a2c1d9727b7143",
+      "size": 228109
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Data/peckychurch_interior.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/3f66d38ff21097ce97fb29d74176def5981ab6a88ebc3d2f90e624d1fdadb0c6.bin",
+      "sha256": "3f66d38ff21097ce97fb29d74176def5981ab6a88ebc3d2f90e624d1fdadb0c6",
+      "size": 16493474
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Data/ratiborchurch_interior.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/ba234e5570e5ade34018d103a0571b73b07a74170dc7a5f8426b717ef0b3ba11.bin",
+      "sha256": "ba234e5570e5ade34018d103a0571b73b07a74170dc7a5f8426b717ef0b3ba11",
+      "size": 72984849
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Data/starakutna_interior.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/de469be3c7ea5bbd5296adb06c7eed0cf119cc1623afc40f330ceca670e69982.bin",
+      "sha256": "de469be3c7ea5bbd5296adb06c7eed0cf119cc1623afc40f330ceca670e69982",
+      "size": 67386767
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Data/stjames_interior.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/47ea9d6eda8c78260cd969aeefc6e6297c1322a67fbb936dd4f9b05ae005d241.bin",
+      "sha256": "47ea9d6eda8c78260cd969aeefc6e6297c1322a67fbb936dd4f9b05ae005d241",
+      "size": 159493202
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Data/stjames_interior_audio.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/baeaab79630a582c0e8193d9d84beac21f3b7a521e11a578ec9c9eef6724e0f1.bin",
+      "sha256": "baeaab79630a582c0e8193d9d84beac21f3b7a521e11a578ec9c9eef6724e0f1",
+      "size": 67256928
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Data/stjohnchurch_interior.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/e3f42a6aa0866c0acfa4b3fb43480a6fa0f61d1eec6881c310aece4d38b0a2cc.bin",
+      "sha256": "e3f42a6aa0866c0acfa4b3fb43480a6fa0f61d1eec6881c310aece4d38b0a2cc",
+      "size": 24087269
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Data/suchdolchurch_interior.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/df16c65390439dc538639b451f34c751c1f1da286bbc0aedeace133d60f8a975.bin",
+      "sha256": "df16c65390439dc538639b451f34c751c1f1da286bbc0aedeace133d60f8a975",
+      "size": 22426932
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Data/vysokachurch_interior.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/b1782d196dea8ed348df5cda3db4ede68971d556fc8ba2a5f8890bd833e388c8.bin",
+      "sha256": "b1782d196dea8ed348df5cda3db4ede68971d556fc8ba2a5f8890bd833e388c8",
+      "size": 49903689
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Localization/Chineses_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/a41602e97f5ae1ffa15fc682a049d85c82f22065595d9deed8f4a8f0f9b67d56.bin",
+      "sha256": "a41602e97f5ae1ffa15fc682a049d85c82f22065595d9deed8f4a8f0f9b67d56",
+      "size": 1558
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Localization/Chineset_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/cdb6cbfd18f756e31185a4a5fea1803afe7c7da9ead28fd2cdf02dd552846f7e.bin",
+      "sha256": "cdb6cbfd18f756e31185a4a5fea1803afe7c7da9ead28fd2cdf02dd552846f7e",
+      "size": 1570
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Localization/Czech_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/18263276ea4d6285e6cf2cc1914501afec70bac6847f3a3c579dc5942e7faeea.bin",
+      "sha256": "18263276ea4d6285e6cf2cc1914501afec70bac6847f3a3c579dc5942e7faeea",
+      "size": 1450
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Localization/English_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/e3ff1cb99fbdc0d640acedda885e0937c8ed346a1b182e18fafa53102b24a5ca.bin",
+      "sha256": "e3ff1cb99fbdc0d640acedda885e0937c8ed346a1b182e18fafa53102b24a5ca",
+      "size": 1035
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Localization/French_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/8ffe740fae038312ca4dc0b703a24bea47c42a7be8d431ab099e6e860caa0237.bin",
+      "sha256": "8ffe740fae038312ca4dc0b703a24bea47c42a7be8d431ab099e6e860caa0237",
+      "size": 1455
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Localization/German_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/fbb2410470928f622ceed84054ce7a4389b09e6b0452b8339ae8408dbd17b6cb.bin",
+      "sha256": "fbb2410470928f622ceed84054ce7a4389b09e6b0452b8339ae8408dbd17b6cb",
+      "size": 1478
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Localization/Italian_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/b777763faba517d0a3c28da219319aad7fe0a719d7ec116b2418d4302c791bbc.bin",
+      "sha256": "b777763faba517d0a3c28da219319aad7fe0a719d7ec116b2418d4302c791bbc",
+      "size": 1429
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Localization/Japanese_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/04b30d9c3b7c2f8b469883c8ef9a5eddc685f0d41ca8cb86f01dd3b62f383d06.bin",
+      "sha256": "04b30d9c3b7c2f8b469883c8ef9a5eddc685f0d41ca8cb86f01dd3b62f383d06",
+      "size": 1617
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Localization/Korean_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/4fd06f4aa12c37eee3dda76da03a42870702fb9e978c7074a010a964c3b856a8.bin",
+      "sha256": "4fd06f4aa12c37eee3dda76da03a42870702fb9e978c7074a010a964c3b856a8",
+      "size": 1594
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Localization/Polish_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/fb1cec34bd19c75e353d2f022ea9443f3abdd6190111d95094b55a3ca7b7b002.bin",
+      "sha256": "fb1cec34bd19c75e353d2f022ea9443f3abdd6190111d95094b55a3ca7b7b002",
+      "size": 1478
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Localization/Portuguese_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/196a3cd4a49c29520d716b26c1ed2ee64f38030a438bc18f65592b29f70e8bcb.bin",
+      "sha256": "196a3cd4a49c29520d716b26c1ed2ee64f38030a438bc18f65592b29f70e8bcb",
+      "size": 1423
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Localization/Russian_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/da06a180c6a945578126346cebab8a67901895d5a4f8b0fbbe76ca8e41f03987.bin",
+      "sha256": "da06a180c6a945578126346cebab8a67901895d5a4f8b0fbbe76ca8e41f03987",
+      "size": 1697
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Localization/Spanish_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/78537d5aa96c50f9ce2fe82a960aace007a6255a5b059f9d439a0f162857a02c.bin",
+      "sha256": "78537d5aa96c50f9ce2fe82a960aace007a6255a5b059f9d439a0f162857a02c",
+      "size": 1420
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Localization/Turkish_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/911fb026ef935a07b844550c9b5eb7fba3e4531a5b332a9c38a2109bbe985521.bin",
+      "sha256": "911fb026ef935a07b844550c9b5eb7fba3e4531a5b332a9c38a2109bbe985521",
+      "size": 1452
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Localization/Ukrainian_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/d7117f22f00f8ba278b9cb25a9e91ceadb6374f08f2418d6d473fe0aa05bb309.bin",
+      "sha256": "d7117f22f00f8ba278b9cb25a9e91ceadb6374f08f2418d6d473fe0aa05bb309",
+      "size": 1707
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/Localization/Vietnamese_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/5dee7042f085b484a10e18cc5ffc848830c37e6ecd3619b0f4f37fd024aa3455.bin",
+      "sha256": "5dee7042f085b484a10e18cc5ffc848830c37e6ecd3619b0f4f37fd024aa3455",
+      "size": 1560
+    },
+    {
+      "path": "Mods/zzz_ChurchInteriorMod/mod.manifest",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/0807cfa163c6fb5f03e9c00c0f2d55a128f87150c3a220a67a3029729c792d11.bin",
+      "sha256": "0807cfa163c6fb5f03e9c00c0f2d55a128f87150c3a220a67a3029729c792d11",
+      "size": 371
     },
     {
       "path": "Mods/zzz_kk_item_fixes/Data/zzz_kk_item_fixes.pak",
