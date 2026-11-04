@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": "2026.11.04.2",
+  "version": "2026.11.04.3",
   "files": [
     {
       "path": "Mods/aerondight/Data/aerondight.pak",
@@ -93,6 +93,36 @@
       "size": 2172
     },
     {
+      "path": "Mods/harsh_winter/Data/harsh_winter.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.3/6f69f693a49a1f8d458ade2d9dd3b1306966a623a7d86e5542b7f9f503f9c136.bin",
+      "sha256": "6f69f693a49a1f8d458ade2d9dd3b1306966a623a7d86e5542b7f9f503f9c136",
+      "size": 7520107
+    },
+    {
+      "path": "Mods/harsh_winter/KRONIKY-MP.txt",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.3/e580bacd5f1dd2964a2f38ee85b656caef95dc9bdd17d3b5a8006bcae3b4854e.bin",
+      "sha256": "e580bacd5f1dd2964a2f38ee85b656caef95dc9bdd17d3b5a8006bcae3b4854e",
+      "size": 464
+    },
+    {
+      "path": "Mods/harsh_winter/mod.manifest",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.3/6caa5818e7b91af50b47246c4852521b18a6ac720fb19537f871a6a9e66d6e70.bin",
+      "sha256": "6caa5818e7b91af50b47246c4852521b18a6ac720fb19537f871a6a9e66d6e70",
+      "size": 558
+    },
+    {
+      "path": "Mods/harsh_winter/README.md",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.3/a6722e1992be6aeb234056ec2320bbec280ffc6d8f577c110a8f9a78e5f0b18d.bin",
+      "sha256": "a6722e1992be6aeb234056ec2320bbec280ffc6d8f577c110a8f9a78e5f0b18d",
+      "size": 15864
+    },
+    {
+      "path": "Mods/harsh_winter/README_EN.md",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.3/1ff96d6a75b7e738af74d8ac86a7b9fc163c36f5e67d87fa6efe60fd3979722f.bin",
+      "sha256": "1ff96d6a75b7e738af74d8ac86a7b9fc163c36f5e67d87fa6efe60fd3979722f",
+      "size": 42394
+    },
+    {
       "path": "Mods/hood_on/Data/hood_on.pak",
       "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.2/b8fbd056fa533bf6b45e5e832c4f8f54624c606ebf35ad793d363e1ef207821d.bin",
       "sha256": "b8fbd056fa533bf6b45e5e832c4f8f54624c606ebf35ad793d363e1ef207821d",
@@ -183,6 +213,18 @@
       "size": 438
     },
     {
+      "path": "Mods/kk_flags/Data/kk_flags.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.3/43b29bae5baeb06ec35430a5d358d161f53cf6b59766b921b1008c3b24071e4d.bin",
+      "sha256": "43b29bae5baeb06ec35430a5d358d161f53cf6b59766b921b1008c3b24071e4d",
+      "size": 8777697
+    },
+    {
+      "path": "Mods/kk_flags/mod.manifest",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.3/fc3e02baf50a9c2caa04b130c488bc442d582b6b51eedaf57bdd0992a4c055f8.bin",
+      "sha256": "fc3e02baf50a9c2caa04b130c488bc442d582b6b51eedaf57bdd0992a4c055f8",
+      "size": 228
+    },
+    {
       "path": "Mods/kk_free/Data/kk_free.pak",
       "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.03.1/4fd7d28981bfca13ec8180a182c9e46ff1798dc612a8734ede207c328758cce0.bin",
       "sha256": "4fd7d28981bfca13ec8180a182c9e46ff1798dc612a8734ede207c328758cce0",
@@ -208,26 +250,26 @@
     },
     {
       "path": "Mods/kk_rp_props/Data/kk_rp_props.pak",
-      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.1/1486e5fbdfe01ce3b7a04b1e3adb87ed1649a892b5107c378e5fa47173a59b8b.bin",
-      "sha256": "1486e5fbdfe01ce3b7a04b1e3adb87ed1649a892b5107c378e5fa47173a59b8b",
-      "size": 208345
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.3/f0e9b4d274551deb85151bbe654f734359b5519fd054bf973704740c38cb2d8b.bin",
+      "sha256": "f0e9b4d274551deb85151bbe654f734359b5519fd054bf973704740c38cb2d8b",
+      "size": 757113
     },
     {
       "path": "Mods/kk_rp_props/Localization/Czech_xml.pak",
-      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.1/9fd0d5a8d3e6087bbf3e06983cf2f659a5b8169b4b7c2f306139788db0a0ee7d.bin",
-      "sha256": "9fd0d5a8d3e6087bbf3e06983cf2f659a5b8169b4b7c2f306139788db0a0ee7d",
-      "size": 382
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.3/b02c9f7864489ead308bffb510ff8d37f47031d7f24bc6fca22ee47258814e54.bin",
+      "sha256": "b02c9f7864489ead308bffb510ff8d37f47031d7f24bc6fca22ee47258814e54",
+      "size": 533
     },
     {
       "path": "Mods/kk_rp_props/Localization/English_xml.pak",
-      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.1/9fd0d5a8d3e6087bbf3e06983cf2f659a5b8169b4b7c2f306139788db0a0ee7d.bin",
-      "sha256": "9fd0d5a8d3e6087bbf3e06983cf2f659a5b8169b4b7c2f306139788db0a0ee7d",
-      "size": 382
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.3/b02c9f7864489ead308bffb510ff8d37f47031d7f24bc6fca22ee47258814e54.bin",
+      "sha256": "b02c9f7864489ead308bffb510ff8d37f47031d7f24bc6fca22ee47258814e54",
+      "size": 533
     },
     {
       "path": "Mods/kk_rp_props/mod.manifest",
-      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.1/b4f76481e727ede4fec5ec5bd0c51b2fb9d051dd4af00001be8ab3ee02871132.bin",
-      "sha256": "b4f76481e727ede4fec5ec5bd0c51b2fb9d051dd4af00001be8ab3ee02871132",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.3/eac586176e08225ef3f53b113f6aac5f2052dcb2523c078330ac2be32161a94a.bin",
+      "sha256": "eac586176e08225ef3f53b113f6aac5f2052dcb2523c078330ac2be32161a94a",
       "size": 232
     },
     {
