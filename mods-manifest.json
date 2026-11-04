@@ -1,7 +1,13 @@
 {
   "schemaVersion": 1,
-  "version": "2026.11.04.6",
+  "version": "2026.11.04.7",
   "files": [
+    {
+      "path": "Data/kk_editor_collection.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.4/6475a608fbb8b80c3e3285d048385d7e2f4237d73876457b24e6e44cc9d77c3d.bin",
+      "sha256": "6475a608fbb8b80c3e3285d048385d7e2f4237d73876457b24e6e44cc9d77c3d",
+      "size": 170784979
+    },
     {
       "path": "Mods/aerondight/Data/aerondight.pak",
       "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.2/2c12e6c343a31e97e0d8b6c627d1b884e82faeb71b88f7920034da9fb419a15a.bin",
