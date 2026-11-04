@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": "2026.11.04.5",
+  "version": "2026.11.04.6",
   "files": [
     {
       "path": "Mods/aerondight/Data/aerondight.pak",
@@ -262,9 +262,9 @@
     },
     {
       "path": "Mods/kk_rp_props/Data/kk_rp_props.pak",
-      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.4/d5de695106d5010099875f8312e6975276ec5d68c44b49517141948a65711dd6.bin",
-      "sha256": "d5de695106d5010099875f8312e6975276ec5d68c44b49517141948a65711dd6",
-      "size": 733179
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.6/8711e8af2ad7304384e2009dcb2fd6be92c1bba4b2cc4442d661a6a47cd5fd9b.bin",
+      "sha256": "8711e8af2ad7304384e2009dcb2fd6be92c1bba4b2cc4442d661a6a47cd5fd9b",
+      "size": 733180
     },
     {
       "path": "Mods/kk_rp_props/Localization/Czech_xml.pak",
@@ -742,9 +742,9 @@
     },
     {
       "path": "Mods/zzz_ChurchInteriorMod/Data/stjames_interior_audio.pak",
-      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.5/baeaab79630a582c0e8193d9d84beac21f3b7a521e11a578ec9c9eef6724e0f1.bin",
-      "sha256": "baeaab79630a582c0e8193d9d84beac21f3b7a521e11a578ec9c9eef6724e0f1",
-      "size": 67256928
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.6/f5e893b68d9bfe54ab357b6b633c22da1f58afbb69748384ec2f891297e051e5.bin",
+      "sha256": "f5e893b68d9bfe54ab357b6b633c22da1f58afbb69748384ec2f891297e051e5",
+      "size": 65307825
     },
     {
       "path": "Mods/zzz_ChurchInteriorMod/Data/stjohnchurch_interior.pak",
