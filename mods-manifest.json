@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": "2026.11.04.3",
+  "version": "2026.11.04.4",
   "files": [
     {
       "path": "Mods/aerondight/Data/aerondight.pak",
@@ -189,6 +189,18 @@
       "size": 354
     },
     {
+      "path": "Mods/kk_editor_collection/Data/kk_editor_collection.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.4/6475a608fbb8b80c3e3285d048385d7e2f4237d73876457b24e6e44cc9d77c3d.bin",
+      "sha256": "6475a608fbb8b80c3e3285d048385d7e2f4237d73876457b24e6e44cc9d77c3d",
+      "size": 170784979
+    },
+    {
+      "path": "Mods/kk_editor_collection/mod.manifest",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.4/ab3fb2b525482fd9eef0a63b00f77fe8329eb231b3411d9e7d133f881fcea43d.bin",
+      "sha256": "ab3fb2b525482fd9eef0a63b00f77fe8329eb231b3411d9e7d133f881fcea43d",
+      "size": 240
+    },
+    {
       "path": "Mods/kk_editor_shields_probe/Data/kk_editor_shields_probe.pak",
       "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.2/d42bbdbd10f3d4e24990a694dce686c5839d682fe27e477bbba81430484815f9.bin",
       "sha256": "d42bbdbd10f3d4e24990a694dce686c5839d682fe27e477bbba81430484815f9",
@@ -214,15 +226,15 @@
     },
     {
       "path": "Mods/kk_flags/Data/kk_flags.pak",
-      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.3/43b29bae5baeb06ec35430a5d358d161f53cf6b59766b921b1008c3b24071e4d.bin",
-      "sha256": "43b29bae5baeb06ec35430a5d358d161f53cf6b59766b921b1008c3b24071e4d",
-      "size": 8777697
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.4/0e3411a4421122f46e1b559f266b71c238683893854bcb20eeb2b98b5876163a.bin",
+      "sha256": "0e3411a4421122f46e1b559f266b71c238683893854bcb20eeb2b98b5876163a",
+      "size": 23853756
     },
     {
       "path": "Mods/kk_flags/mod.manifest",
-      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.3/fc3e02baf50a9c2caa04b130c488bc442d582b6b51eedaf57bdd0992a4c055f8.bin",
-      "sha256": "fc3e02baf50a9c2caa04b130c488bc442d582b6b51eedaf57bdd0992a4c055f8",
-      "size": 228
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.4/0525814f246eb092f1469ce779b1cae4588b0d262a8bd0ebc43cb6428e51ef47.bin",
+      "sha256": "0525814f246eb092f1469ce779b1cae4588b0d262a8bd0ebc43cb6428e51ef47",
+      "size": 227
     },
     {
       "path": "Mods/kk_free/Data/kk_free.pak",
@@ -250,27 +262,27 @@
     },
     {
       "path": "Mods/kk_rp_props/Data/kk_rp_props.pak",
-      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.3/f0e9b4d274551deb85151bbe654f734359b5519fd054bf973704740c38cb2d8b.bin",
-      "sha256": "f0e9b4d274551deb85151bbe654f734359b5519fd054bf973704740c38cb2d8b",
-      "size": 757113
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.4/d5de695106d5010099875f8312e6975276ec5d68c44b49517141948a65711dd6.bin",
+      "sha256": "d5de695106d5010099875f8312e6975276ec5d68c44b49517141948a65711dd6",
+      "size": 733179
     },
     {
       "path": "Mods/kk_rp_props/Localization/Czech_xml.pak",
-      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.3/b02c9f7864489ead308bffb510ff8d37f47031d7f24bc6fca22ee47258814e54.bin",
-      "sha256": "b02c9f7864489ead308bffb510ff8d37f47031d7f24bc6fca22ee47258814e54",
-      "size": 533
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.4/596c326b3e17ce8ae1edf9d81d53e5cfb2749123d6441075aec085925898601c.bin",
+      "sha256": "596c326b3e17ce8ae1edf9d81d53e5cfb2749123d6441075aec085925898601c",
+      "size": 545
     },
     {
       "path": "Mods/kk_rp_props/Localization/English_xml.pak",
-      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.3/b02c9f7864489ead308bffb510ff8d37f47031d7f24bc6fca22ee47258814e54.bin",
-      "sha256": "b02c9f7864489ead308bffb510ff8d37f47031d7f24bc6fca22ee47258814e54",
-      "size": 533
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.4/596c326b3e17ce8ae1edf9d81d53e5cfb2749123d6441075aec085925898601c.bin",
+      "sha256": "596c326b3e17ce8ae1edf9d81d53e5cfb2749123d6441075aec085925898601c",
+      "size": 545
     },
     {
       "path": "Mods/kk_rp_props/mod.manifest",
-      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.3/eac586176e08225ef3f53b113f6aac5f2052dcb2523c078330ac2be32161a94a.bin",
-      "sha256": "eac586176e08225ef3f53b113f6aac5f2052dcb2523c078330ac2be32161a94a",
-      "size": 232
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.4/29f8aeb62f4a462465bd148683d4fc77635aec81be257c5542db900e80f05bf6.bin",
+      "sha256": "29f8aeb62f4a462465bd148683d4fc77635aec81be257c5542db900e80f05bf6",
+      "size": 231
     },
     {
       "path": "Mods/KobylaArms/Data/kobylaarms.pak",
@@ -661,6 +673,18 @@
       "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.1/438d4ea09f0e9254a2304a0d7a64892c68ef078c25672a53a29f38d7a5596eae.bin",
       "sha256": "438d4ea09f0e9254a2304a0d7a64892c68ef078c25672a53a29f38d7a5596eae",
       "size": 332
+    },
+    {
+      "path": "Mods/zzz_kk_item_fixes/Data/zzz_kk_item_fixes.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.4/d5272e6c8a1a572d45fcaed077ba78ed02c89deb103867bbccf21c9c3bca6268.bin",
+      "sha256": "d5272e6c8a1a572d45fcaed077ba78ed02c89deb103867bbccf21c9c3bca6268",
+      "size": 642943
+    },
+    {
+      "path": "Mods/zzz_kk_item_fixes/mod.manifest",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.4/f60f17ea350b64654c4ea23f7f7bca06f768b1e49dcede27ee07f7367e337c3d.bin",
+      "sha256": "f60f17ea350b64654c4ea23f7f7bca06f768b1e49dcede27ee07f7367e337c3d",
+      "size": 233
     }
   ]
 }
