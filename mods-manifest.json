@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": "2026.11.04.7",
+  "version": "2026.11.04.8",
   "files": [
     {
       "path": "Data/kk_editor_collection.pak",
@@ -883,6 +883,18 @@
       "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.4/f60f17ea350b64654c4ea23f7f7bca06f768b1e49dcede27ee07f7367e337c3d.bin",
       "sha256": "f60f17ea350b64654c4ea23f7f7bca06f768b1e49dcede27ee07f7367e337c3d",
       "size": 233
+    },
+    {
+      "path": "Mods/znpcoverhaul/data/znpcoverhaul.pak",
+      "size": 558454158,
+      "sha256": "5815e62b9b763d3b8f653315a36550c0311da14ad11b258cc5de460c56fa68af",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.8/Mods__znpcoverhaul__data__znpcoverhaul.pak"
+    },
+    {
+      "path": "Mods/znpcoverhaul/mod.manifest",
+      "size": 309,
+      "sha256": "cb0bdb0324cac71226308dc11570aac033d39d58cf3f237906abeb364be0cf3e",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.04.8/Mods__znpcoverhaul__mod.manifest"
     }
   ]
 }
