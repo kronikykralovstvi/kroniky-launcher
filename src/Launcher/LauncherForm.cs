@@ -21,7 +21,7 @@ internal sealed partial class LauncherForm : Form
 
 	private const string JoinUri = "kcdmp://connect/176.9.102.179:25588";
 
-	private const string AppVersion = "1.1.1";
+	private const string AppVersion = "1.1.2";
 
 	private readonly Label status = new Label
 	{
@@ -75,7 +75,7 @@ internal sealed partial class LauncherForm : Form
 
 	private readonly Label version = new Label
 	{
-		Text = "Launcher 1.1.1",
+		Text = "Launcher 1.1.2",
 		AutoSize = false,
 		Height = 26,
 		Dock = DockStyle.Bottom,
