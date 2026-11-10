@@ -6,7 +6,7 @@ namespace KronikyLauncher;
 
 internal sealed partial class LauncherForm
 {
-    private const string Website = "https://rpkronikykralovstvi.cz/";
+    private const string Website = NewsFeed.Website;
     private const string Discord = "https://discord.gg/uYYEDDFPcF";
     private readonly List<(Control control, Rectangle bounds, float fontSize)> designControls=[];
     private readonly NewsCard[] newsCards=[new(),new()];
@@ -83,7 +83,7 @@ internal sealed partial class LauncherForm
     private void OpenLink(string url)
     {
         if(!Uri.TryCreate(url,UriKind.Absolute,out var uri)||uri.Scheme!="https"||uri.UserInfo.Length>0||uri.Port!=443 ||
-          !(uri.Host=="rpkronikykralovstvi.cz" || url==Discord || (uri.Host=="github.com"&&uri.AbsolutePath.StartsWith("/kronikykralovstvi/kroniky-launcher/",StringComparison.Ordinal))))
+          !(uri.Host=="kronikykralovstvi.cz" || url==Discord || (uri.Host=="github.com"&&uri.AbsolutePath.StartsWith("/kronikykralovstvi/kroniky-launcher/",StringComparison.Ordinal))))
             return;
         try{System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(uri.AbsoluteUri){UseShellExecute=true});}
         catch(Exception ex){MessageBox.Show(this,"Odkaz se nepodařilo otevřít: "+ex.Message,"Kroniky království");}
@@ -96,25 +96,16 @@ internal sealed partial class LauncherForm
         try
         {
             using var timeout=new CancellationTokenSource(TimeSpan.FromSeconds(15));
-            var data=await ReleaseTrust.DownloadSmall(http,Website+"api/portal/news",2*1024*1024,timeout.Token);
-            using var doc=JsonDocument.Parse(data);var posts=doc.RootElement.GetProperty("posts").EnumerateArray().Take(2).ToArray();
+            var data=await ReleaseTrust.DownloadSmall(http,Website+"api/news",2*1024*1024,timeout.Token);
+            var posts=NewsFeed.Parse(data);
             for(int i=0;i<newsCards.Length;i++)
             {
-                if(i>=posts.Length){newsCards[i].Headline="Z království";newsCards[i].Summary="Aktuální dění sleduj na webu a Discordu.";continue;}
-                var post=posts[i];var card=newsCards[i];string title=post.GetProperty("title").GetString()??"Novinky";
-                card.Headline=title.Length>120?title[..120]:title;string summary=post.GetProperty("summary").GetString()??"";
-                card.Summary=summary.Length>240?summary[..240]+"…":summary;
-                string slug=post.GetProperty("slug").GetString()??"";
-                card.ArticleUrl=Website+"novinky/"+Uri.EscapeDataString(slug)+"/";card.AccessibleName=card.Headline;
-                if(post.TryGetProperty("banner",out var banner)&&banner.GetString() is string path && path.StartsWith("/assets/",StringComparison.Ordinal)&&!path.Contains(".."))
-                {
-                    try
-                    {
-                        var imageBytes=await ReleaseTrust.DownloadSmall(http,Website.TrimEnd('/')+path,5*1024*1024,timeout.Token);
-                        using var memory=new MemoryStream(imageBytes);using var image=Image.FromStream(memory);
-                        if(image.Width<=4096&&image.Height<=4096){var old=card.Art;card.Art=new Bitmap(image);old?.Dispose();}
-                    }catch { /* Text and link remain usable if the banner fails. */ }
-                }
+                var card=newsCards[i];
+                card.Headline=i<posts.Length?posts[i].Title:"Z království";
+                card.Summary=i<posts.Length?posts[i].Summary:"Zatím nejsou zveřejněné další novinky. Aktuální dění sleduj na webu a Discordu.";
+                card.ArticleUrl=Website+"novinky/";
+                card.AccessibleName=card.Headline;
+                var old=card.Art;card.Art=null;old?.Dispose();
                 card.Invalidate();
             }
         }

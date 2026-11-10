@@ -9,6 +9,7 @@ static void Assert(bool condition, string message) { if (!condition) throw new E
 static async Task Fails(Func<Task> action) { try { await action(); } catch { return; } throw new Exception("Expected rejection"); }
 static ModManifest Manifest(params (string path, string body)[] rows) => new() { SchemaVersion = 1, Version = "test", Files = rows.Select(r => new ModFile { Path = r.path, Url = "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/test/" + Uri.EscapeDataString(r.path.Replace("/", "_")), Size = Encoding.UTF8.GetByteCount(r.body), Sha256 = Sha(r.body) }).ToList() };
 SecurityTests.Run();
+NewsFeedTests.Run();
 var root = Path.Combine(Path.GetTempPath(), "kk-mod-tests-" + Guid.NewGuid().ToString("N"));
 Directory.CreateDirectory(root);
 var handler = new FakeHandler(); using var http = new HttpClient(handler);
