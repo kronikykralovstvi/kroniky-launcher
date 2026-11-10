@@ -94,6 +94,7 @@ internal sealed partial class LauncherForm : Form
 
     public LauncherForm()
     {
+        http.DefaultRequestHeaders.UserAgent.ParseAdd("KronikyKralovstviLauncher/1.1.2");
         InitializeDesign();
         try { if(File.Exists(playerNameFile))playerName.Text=File.ReadAllText(playerNameFile).Trim(); } catch { }
         play.Click+=async(_,_)=>{if(await CheckAndInstallUpdatesAsync(false))await JoinServerAsync();};
@@ -103,94 +104,44 @@ internal sealed partial class LauncherForm : Form
         Shown+=async(_,_)=>await Task.WhenAll(RefreshNews(),CheckAndInstallUpdatesAsync(false));
     }
 
-	private Task JoinServerAsync()
-	{
-		try
-		{
-			status.Text = "Spouštím KCD:MP a připojuji k serveru…";
-			string text = Path.Combine(AppContext.BaseDirectory, "KcdMp_launcher.exe");
-			if (!File.Exists(text))
-			{
-				try
-				{
-					if (File.Exists(clientPathFile))
-					{
-						text = File.ReadAllText(clientPathFile).Trim();
-					}
-				}
-				catch
-				{
-				}
-			}
-			if (!File.Exists(text))
-			{
-				string text2 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "kcd2 mult", "KcdMp_launcher.exe");
-				if (File.Exists(text2))
-				{
-					text = text2;
-					Directory.CreateDirectory(Path.GetDirectoryName(clientPathFile)!);
-					File.WriteAllText(clientPathFile, text);
-				}
-			}
-			if (!File.Exists(text))
-			{
-				OpenFileDialog openFileDialog = new OpenFileDialog
-				{
-					Title = "Vyber KcdMp_launcher.exe ve své instalaci KCD:MP",
-					Filter = "KCD:MP launcher (KcdMp_launcher.exe)|KcdMp_launcher.exe|Všechny soubory (*.*)|*.*",
-					FileName = "KcdMp_launcher.exe",
-					CheckFileExists = true
-				};
-				try
-				{
-					if (openFileDialog.ShowDialog(this) != DialogResult.OK)
-					{
-						status.Text = "Spuštění zrušeno. Vyber soubor KcdMp_launcher.exe.";
-						return Task.CompletedTask;
-					}
-					text = openFileDialog.FileName;
-					Directory.CreateDirectory(Path.GetDirectoryName(clientPathFile)!);
-					File.WriteAllText(clientPathFile, text);
-				}
-				finally
-				{
-					((IDisposable)(object)openFileDialog)?.Dispose();
-				}
-			}
-			if (!File.Exists(text))
-			{
-				throw new FileNotFoundException("Vybraný soubor KcdMp_launcher.exe nebyl nalezen.", text);
-			}
-			ProcessStartInfo processStartInfo = new ProcessStartInfo
-			{
-				FileName = text,
-				UseShellExecute = false,
-				ArgumentList = { "--connect", "176.9.102.179:25588" }
-			};
-			string text3 = playerName.Text.Trim().Replace(' ', '_');
-			if (string.IsNullOrWhiteSpace(text3))
-			{
-				throw new InvalidOperationException("Nejdřív zadej jméno své postavy.");
-			}
-			if (text3.Any(char.IsControl) || text3.Contains('"') || text3.Contains('\''))
-			{
-				throw new InvalidOperationException("Jméno obsahuje nepovolené znaky.");
-			}
-			Directory.CreateDirectory(Path.GetDirectoryName(playerNameFile)!);
-			File.WriteAllText(playerNameFile, text3);
-			processStartInfo.ArgumentList.Add("--name");
-			processStartInfo.ArgumentList.Add(text3);
-			Process.Start(processStartInfo);
-			status.Text = "KCD:MP se spouští a připojuje k serveru…";
-		}
-		catch (Exception ex)
-		{
-			status.Text = "Hru se nepodařilo spustit.";
-			MessageBox.Show("KCD:MP se nepodařilo spustit.\n\n" + ex.Message, "Chyba spuštění", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-		}
-		return Task.CompletedTask;
-	}
-
+    private async Task JoinServerAsync()
+    {
+        if (!play.Enabled) return;
+        play.Enabled=false; update.Enabled=false; gameFolder.Enabled=false;
+        progress.Visible=true; progress.Style=ProgressBarStyle.Marquee;
+        try
+        {
+            string name=playerName.Text.Trim().Replace(' ','_');
+            if(string.IsNullOrWhiteSpace(name) || name.Any(char.IsControl) || name.Contains('"') || name.Contains('\''))
+                throw new InvalidOperationException("Zadej platné jméno své postavy.");
+            EnsureGameStopped();
+            status.Text="Ověřuji kompatibilitu aktuálního KCD:MP se serverem…";
+            Mods.OfficialClientRelease release;
+            using(var checkTimeout=new CancellationTokenSource(TimeSpan.FromSeconds(20)))
+                release=await Mods.OfficialClient.CheckServerAsync(http,"http://"+ServerAddress+"/",checkTimeout.Token);
+            status.Text="Kontroluji a připravuji oficiální aktualizaci KCD:MP…";
+            using var timeout=new CancellationTokenSource(TimeSpan.FromMinutes(30));
+            var executable=await Mods.OfficialClient.PrepareAsync(http,Path.Combine(root,"official-client"),EnsureGameStopped,timeout.Token,release);
+            EnsureGameStopped();
+            Directory.CreateDirectory(root);
+            File.WriteAllText(playerNameFile,name);
+            var start=new ProcessStartInfo {
+                FileName=executable,WorkingDirectory=Path.GetDirectoryName(executable)!,UseShellExecute=false,
+                ArgumentList={"--connect",ServerAddress,"--name",name}
+            };
+            Process.Start(start);
+            status.Text="Ověřený KCD:MP se spouští a připojuje k serveru…";
+        }
+        catch(Exception ex)
+        {
+            status.Text="Spuštění zastaveno; předchozí instalace zůstává zachovaná.";
+            MessageBox.Show(this,ex.Message,"KCD:MP aktualizace",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+        }
+        finally
+        {
+            progress.Visible=false; play.Enabled=true; update.Enabled=true; gameFolder.Enabled=true;
+        }
+    }
 	private async Task<bool> CheckAndInstallUpdatesAsync(bool showNoUpdate)
     {
         if (!update.Enabled) return false;
