@@ -1,4 +1,5 @@
 using System.Drawing.Drawing2D;
+using System.Runtime.InteropServices;
 using System.Text.Json;
 using KronikyLauncher.Mods;
 
@@ -22,7 +23,10 @@ internal sealed partial class LauncherForm
         BackColor=Color.FromArgb(6,17,29);ForeColor=Color.FromArgb(244,224,182);
         using var stream=typeof(LauncherForm).Assembly.GetManifestResourceStream("KronikyKralovstviLauncher.launcher-design.png")!;
         using var source=Image.FromStream(stream);surface=new DesignSurface(new Bitmap(source)){Dock=DockStyle.Fill};Controls.Add(surface);
-        Place(Label("KRONIKY KRÁLOVSTVÍ",ContentAlignment.MiddleCenter),360,5,870,40,26);
+        var title = Label("KRONIKY KRÁLOVSTVÍ",ContentAlignment.MiddleCenter);
+        Place(title,360,5,870,40,26);
+        surface.MouseDown += MoveFromTitleBar;
+        title.MouseDown += MoveFromTitleBar;
         AddButton("—",1440,7,43,34,()=>WindowState=FormWindowState.Minimized,23);
         AddButton("□",1486,7,43,34,()=>WindowState=WindowState==FormWindowState.Maximized?FormWindowState.Normal:FormWindowState.Maximized,23);
         AddButton("×",1532,7,43,34,()=>Close(),27);
@@ -70,6 +74,22 @@ internal sealed partial class LauncherForm
             control.Tag=control.Font;previous?.Dispose();
         }
         surface.Invalidate();
+    }
+    [DllImport("user32.dll")]
+    private static extern bool ReleaseCapture();
+    [DllImport("user32.dll")]
+    private static extern IntPtr SendMessage(IntPtr window, int message, IntPtr wParam, IntPtr lParam);
+
+    private void MoveFromTitleBar(object? sender, MouseEventArgs e)
+    {
+        if (e.Button != MouseButtons.Left || sender is not Control control) return;
+        var point = PointToClient(control.PointToScreen(e.Location));
+        if (point.Y < 0 || point.Y >= ClientSize.Height * 46 / 992 ||
+            point.X < 0 || point.X >= ClientSize.Width * 1435 / 1586) return;
+        // Child controls own the painted caption. Delegate moving to Windows,
+        // preserving multi-monitor coordinates, snapping and maximized restore.
+        ReleaseCapture();
+        SendMessage(Handle, 0xA1, (IntPtr)2, IntPtr.Zero);
     }
     protected override void WndProc(ref Message m)
     {
