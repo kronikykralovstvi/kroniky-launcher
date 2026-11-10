@@ -9,6 +9,10 @@ public sealed record OfficialClientRelease(string Version, string Url, string Sh
 
 public static class OfficialClient
 {
+    public static System.Diagnostics.ProcessStartInfo LaunchInfo(string executable,string game,string server,string name) => new() {
+        FileName=executable,WorkingDirectory=Path.GetDirectoryName(executable)!,UseShellExecute=false,
+        ArgumentList={"--connect",server,"--name",name,"--game",game}
+    };
     public const string ReleasesUrl = "https://api.github.com/repos/dintech-rappy/kcd-mp-releases/releases?per_page=100";
 
     public static int PublishedProtocol(string html, OfficialClientRelease release)
@@ -43,7 +47,13 @@ public static class OfficialClient
         // launch. Extract into a fresh directory so a failed update never alters
         // the previous installation or the user's separate KCD:MP installation.
         var archivePath = Path.Combine(root, release.Sha256 + ".zip");
-        if (!File.Exists(archivePath))
+        var validArchive = false;
+        if (File.Exists(archivePath))
+        {
+            try { await VerifyAsync(archivePath, release, token); validArchive = true; }
+            catch (InvalidDataException) { /* Replace only after a verified fresh download. */ }
+        }
+        if (!validArchive)
         {
             var temporary = archivePath + "." + Guid.NewGuid().ToString("N") + ".part";
             try

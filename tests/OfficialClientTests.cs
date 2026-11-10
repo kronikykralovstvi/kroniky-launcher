@@ -12,7 +12,15 @@ static class OfficialClientTests
             digest="sha256:"+hash,size=123L}}};
         var json=JsonSerializer.SerializeToUtf8Bytes(new[]{Release("0.49.1",false),Release("0.49.0",true),Release("0.48.1",true)});
         var latest=OfficialClient.SelectRelease(json);
+        var launch=OfficialClient.LaunchInfo("C:/Client/KcdMp_launcher.exe","C:/Games/My KCD2","server:7777","Miroslav_Hranicar");
+        if(!launch.ArgumentList.SequenceEqual(new[]{"--connect","server:7777","--name","Miroslav_Hranicar","--game","C:/Games/My KCD2"}) || launch.UseShellExecute)
+            throw new Exception("selected game path missing from safe launch arguments");
         if(latest.Version!="0.49.0")throw new Exception("server-only release hid latest client");
+        if(OfficialClient.PublishedProtocol("protocol 122 "+latest.Url+" "+latest.Sha256,latest)!=122)throw new Exception("protocol parse");
+        foreach(var html in new[]{"protocol 122", "protocol 121 protocol 122 "+latest.Url+" "+latest.Sha256}) {
+            try { OfficialClient.PublishedProtocol(html,latest); throw new Exception("unconfirmed/ambiguous protocol accepted"); }
+            catch(InvalidDataException) { }
+        }
         foreach(var bad in new[]{"../bad.exe","/bad.exe","C:/bad.exe","a/../../bad.exe","a:stream","a\\..\\bad.exe"})
         {
             try { OfficialClient.SafeEntry(Path.GetTempPath(),bad); }
@@ -50,6 +58,9 @@ static class OfficialClientTests
         try { await OfficialClient.PrepareAsync(http,root,()=>throw new InvalidOperationException("running game"),default); }
         catch(InvalidOperationException){rejected=true;}
         if (!rejected) throw new Exception("running game guard ignored");
+        await File.WriteAllTextAsync(Path.Combine(root,digest+".zip"),"interrupted/corrupt cache");
+        var recovered = await OfficialClient.PrepareAsync(http,root,()=>stopped++,default);
+        if(handler.Downloads!=2 || recovered!=repaired)throw new Exception("corrupt archive cache did not recover");
         Console.WriteLine("PASS official client download, verified reuse, repair and running-game guard");
     }
 

@@ -21,7 +21,7 @@ internal sealed partial class LauncherForm : Form
 
 	private const string JoinUri = "kcdmp://connect/176.9.102.179:25588";
 
-	private const string AppVersion = "1.1.2";
+	private const string AppVersion = "1.1.3";
 
 	private readonly Label status = new Label
 	{
@@ -75,7 +75,7 @@ internal sealed partial class LauncherForm : Form
 
 	private readonly Label version = new Label
 	{
-		Text = "Launcher 1.1.2",
+		Text = "Launcher 1.1.3",
 		AutoSize = false,
 		Height = 26,
 		Dock = DockStyle.Bottom,
@@ -94,7 +94,7 @@ internal sealed partial class LauncherForm : Form
 
     public LauncherForm()
     {
-        http.DefaultRequestHeaders.UserAgent.ParseAdd("KronikyKralovstviLauncher/1.1.2");
+        http.DefaultRequestHeaders.UserAgent.ParseAdd("KronikyKralovstviLauncher/1.1.3");
         InitializeDesign();
         try { if(File.Exists(playerNameFile))playerName.Text=File.ReadAllText(playerNameFile).Trim(); } catch { }
         play.Click+=async(_,_)=>{if(await CheckAndInstallUpdatesAsync(false))await JoinServerAsync();};
@@ -115,6 +115,8 @@ internal sealed partial class LauncherForm : Form
             if(string.IsNullOrWhiteSpace(name) || name.Any(char.IsControl) || name.Contains('"') || name.Contains('\''))
                 throw new InvalidOperationException("Zadej platné jméno své postavy.");
             EnsureGameStopped();
+            var game=File.ReadAllText(GamePathFile).Trim();
+            if(!IsGameRoot(game))throw new InvalidOperationException("Vybraná instalace hry již není dostupná. Otevři Nastavení hry.");
             status.Text="Ověřuji kompatibilitu aktuálního KCD:MP se serverem…";
             Mods.OfficialClientRelease release;
             using(var checkTimeout=new CancellationTokenSource(TimeSpan.FromSeconds(20)))
@@ -125,10 +127,7 @@ internal sealed partial class LauncherForm : Form
             EnsureGameStopped();
             Directory.CreateDirectory(root);
             File.WriteAllText(playerNameFile,name);
-            var start=new ProcessStartInfo {
-                FileName=executable,WorkingDirectory=Path.GetDirectoryName(executable)!,UseShellExecute=false,
-                ArgumentList={"--connect",ServerAddress,"--name",name}
-            };
+            var start=Mods.OfficialClient.LaunchInfo(executable,game,ServerAddress,name);
             Process.Start(start);
             status.Text="Ověřený KCD:MP se spouští a připojuje k serveru…";
         }
