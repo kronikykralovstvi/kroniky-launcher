@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "version": "2026.11.10.1",
+  "version": "2026.11.11.1",
   "files": [
     {
       "path": "Data/kk_editor_collection.pak",
-      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.10.1/776f51c91641c86dd6c532d8b1029736acbbcbf0f8c24d7fe84d90fc2d890c59.bin",
-      "sha256": "776f51c91641c86dd6c532d8b1029736acbbcbf0f8c24d7fe84d90fc2d890c59",
-      "size": 173595601
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.11.1/038e843055f2495f64e1c536e53791b12ad8727e5b9faa50161b3b76ac371772.bin",
+      "sha256": "038e843055f2495f64e1c536e53791b12ad8727e5b9faa50161b3b76ac371772",
+      "size": 173595753
     },
     {
       "path": "Mods/aerondight/Data/aerondight.pak",
@@ -196,9 +196,9 @@
     },
     {
       "path": "Mods/kk_editor_collection/Data/kk_editor_collection.pak",
-      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.10.1/776f51c91641c86dd6c532d8b1029736acbbcbf0f8c24d7fe84d90fc2d890c59.bin",
-      "sha256": "776f51c91641c86dd6c532d8b1029736acbbcbf0f8c24d7fe84d90fc2d890c59",
-      "size": 173595601
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.11.1/038e843055f2495f64e1c536e53791b12ad8727e5b9faa50161b3b76ac371772.bin",
+      "sha256": "038e843055f2495f64e1c536e53791b12ad8727e5b9faa50161b3b76ac371772",
+      "size": 173595753
     },
     {
       "path": "Mods/kk_editor_collection/mod.manifest",
@@ -898,9 +898,9 @@
     },
     {
       "path": "Mods/KK_ImportedProps/Data/KK_ImportedProps.pak",
-      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.10.1/2b5c88286f3586da04b22ed6cbc098e44b28d1ff280e9bec0eb81b032628e059.bin",
-      "sha256": "2b5c88286f3586da04b22ed6cbc098e44b28d1ff280e9bec0eb81b032628e059",
-      "size": 54916453
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.11.1/1b780879e64d23220eb4a1ba98b54e13ef51ec4e9bee7e1cf06e82e08128ff03.bin",
+      "sha256": "1b780879e64d23220eb4a1ba98b54e13ef51ec4e9bee7e1cf06e82e08128ff03",
+      "size": 56558571
     },
     {
       "path": "Mods/KK_ImportedProps/Localization/Czech_xml.pak",
