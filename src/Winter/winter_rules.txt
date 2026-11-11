@@ -1,0 +1,245 @@
+# =============================================================================
+# Harsh Winter - which game textures each season pack changes
+#
+#   <group>  <pattern>
+#
+# Patterns are globs (* = anything) on the lower-case path of a file inside the
+# game's .pak archives. Files in level paks are seen as levels/<level>/<path>.
+# The FIRST matching line decides a texture's group; "exclude" lines always win.
+# Run "Build texture packs.bat list" to see what every pattern matches before
+# building, and add or remove lines here to taste. Nothing needs recompiling.
+#
+# Groups and what the packs do to them:
+#   terrain     ground layers           snow: deep snow      thaw: snow patches + mud
+#   road        roads and paths         snow: trodden snow   thaw: deep mud
+#   roof        roofs, thatch, hay      snow: heavy snow     thaw: melting patches
+#   rock        rocks and cliffs        snow: dusting        thaw: wet
+#   props       fences, carts, barrels  snow: hoar frost     (textures can't put snow only on top faces)
+#   glass       window glass            snow: frost
+#   conifer     pines, spruces, firs    snow: snow on top of every needle spray and needle layer
+#   deciduous   broadleaf trees, bushes snow: bare - every leaf removed, whatever its colour
+#               (green, yellow, orange, red) - with snow along the top of the twigs
+#               and branches and in the forks; frosted bark
+#   (marcescent is accepted as an old name for deciduous)
+#   grass       grass, herbs, ferns     snow: mostly buried, straw tips with frost
+#   billboard   distant tree impostors  snow: snowy dark conifers, bare grey-brown crowns
+#   cover       distant terrain map     snow: white landscape to the horizon
+#   panorama    the far landscape painted on horizon meshes (objects/panorama/...)
+#               snow: open land under deep snow, woods dark and dusted white
+#   snowdirt    people's dirt/grime     snow: the dirt on clothes becomes powder snow
+#   mtl-terrain / mtl-road: material files; their diffuse textures join terrain / road
+#   interior-mtl  material files of interiors: every texture they use stays
+#                 snow-free (floors, inner walls, furniture, the inside of roofs),
+#                 even if outdoor objects share it. Terrain and road layers keep
+#                 their snow (they're the landscape).
+#
+# After every build, Mods\harsh_winter_world\build_report.txt lists what got
+# snow, what was kept snow-free, and textures whose NAMES suggest ground, road
+# or roof but that no rule caught - add a line here for those and rebuild.
+# =============================================================================
+
+# ---- snow as dirt (your idea): the dirt/grime colour the game lays over people's
+#      clothes becomes powder snow. The game's own dirt system then shows snow
+#      settling on everyone outdoors; Harsh Winter adds it in snowfall and melts
+#      it off by fires and in heated rooms (seasons_snowcoat 0|1). These lines
+#      are checked BEFORE the excludes below. Only colour maps are changed (grey
+#      masks are left alone); delete these lines and rebuild to keep brown mud.
+snowdirt     *characters/*dirt*.dds
+snowdirt     *characters/*grime*.dds
+snowdirt     *characters/*mud_*.dds
+snowdirt     engineassets/textures/*dirt*.dds
+snowdirt     engineassets/textures/*grime*.dds
+
+# ---- never touch -------------------------------------------------------------
+exclude      *interior*
+exclude      *_int_*
+exclude      *_int_diff.dds
+exclude      *river*
+exclude      *water*
+exclude      *_ddna*
+exclude      *_spec*
+exclude      *_normal*
+exclude      *_nrm*
+exclude      *characters/*
+exclude      *animals/*
+# people, animals, hair and fur: never snowed or frosted (snow on them only
+# outdoors would read as white hair)
+exclude      *character*
+exclude      *animal*
+exclude      */hair*
+exclude      *_hair*
+exclude      *beard*
+exclude      *eyebrow*
+exclude      *eyelash*
+exclude      */fur_*
+exclude      *_fur_*
+exclude      *_fur.*
+exclude      */horse*
+exclude      *_horse*
+exclude      *human*
+exclude      *clothing*
+exclude      *armor*
+exclude      *armour*
+exclude      libs/ui/*
+exclude      *ui/*
+exclude      *indoor*
+exclude      *inside*
+exclude      *ceiling*
+exclude      *cellar*
+exclude      *basement*
+exclude      *_floor_int*
+exclude      *carpet*
+exclude      *tapestry*
+exclude      *underside*
+
+# ---- interiors, by the materials that use a texture ----------------------------
+interior-mtl  *interior*.mtl
+interior-mtl  *_int_*.mtl
+interior-mtl  *_int.mtl
+interior-mtl  *indoor*.mtl
+interior-mtl  *inside*.mtl
+interior-mtl  *ceiling*.mtl
+interior-mtl  *cellar*.mtl
+interior-mtl  *basement*.mtl
+interior-mtl  *furniture*.mtl
+interior-mtl  objects/structures/*/int/*.mtl
+interior-mtl  objects/*/interiors/*.mtl
+interior-mtl  objects/props/furniture/*.mtl
+
+# ---- terrain materials (the ground layers painted on the landscape) -----------
+# Roads first (a road texture gets the trodden-snow look, not deep powder).
+mtl-road     materials/terrain/roads/*.mtl
+mtl-road     materials/terrain/*road*.mtl
+mtl-road     materials/terrain/*path*.mtl
+mtl-road     materials/roads/*.mtl
+mtl-road     materials/*/roads/*.mtl
+mtl-road     objects/*road*.mtl
+mtl-road     objects/*/roads/*.mtl
+mtl-terrain  materials/terrain/grass/*.mtl
+mtl-terrain  materials/terrain/forest/*.mtl
+mtl-terrain  materials/terrain/soil/*.mtl
+mtl-terrain  materials/terrain/stones/*.mtl
+mtl-terrain  materials/terrain/cobblestone/*.mtl
+mtl-terrain  materials/terrain/special/*.mtl
+mtl-terrain  materials/terrain/*.mtl
+
+# ---- distant terrain colour map (one per level) --------------------------------
+cover        levels/*/terrain/cover.ctc
+
+# ---- roads, paths and streets found by texture name (roads not in a material
+#      folder above, road decals and road meshes) ---------------------------------
+road         textures/terrain/roads/*_diff.dds
+road         textures/*road*_diff.dds
+road         textures/*/paths/*_diff.dds
+road         textures/*_path_*_diff.dds
+road         textures/*street*_diff.dds
+road         objects/*road*_diff.dds
+road         objects/*/roads/*_diff.dds
+road         textures/terrain/*mud*_diff.dds
+road         textures/terrain/*dirt*_diff.dds
+
+# ---- any other terrain layer texture -------------------------------------------
+terrain      textures/terrain/*_diff.dds
+
+# ---- roofs, including low-detail roof models seen from far away -----------------
+roof         textures/structures/roof/*_diff.dds
+roof         objects/intermediates/roofify/*_diff.dds
+roof         objects/*roof*_diff.dds
+roof         objects/*thatch*_diff.dds
+roof         objects/*shingle*_diff.dds
+roof         objects/*haystack*_diff.dds
+roof         objects/*hay_stack*_diff.dds
+roof         objects/*hay_barrack*_diff.dds
+
+# ---- distant trees (billboards / impostors) -------------------------------------
+billboard    engineassets/textures/billboardatlas/diffuse/*_diff.dds
+billboard    objects/natural/vegetation/*uberlod*_diff.dds
+billboard    objects/natural/vegetation/*xlod*_diff.dds
+billboard    objects/natural/vegetation/*bblod*_diff.dds
+
+# ---- trees and plants ----------------------------------------------------------
+# Larch is a conifer that drops its (yellow) needles in winter: bare.
+deciduous    objects/natural/vegetation/*larix*_diff.dds
+deciduous    objects/natural/vegetation/*larch*_diff.dds
+conifer      objects/natural/vegetation/*pinus*_diff.dds
+conifer      objects/natural/vegetation/*picea*_diff.dds
+conifer      objects/natural/vegetation/*abies*_diff.dds
+conifer      objects/natural/vegetation/*spruce*_diff.dds
+conifer      objects/natural/vegetation/*pine*_diff.dds
+conifer      objects/natural/vegetation/*fir_*_diff.dds
+conifer      objects/natural/vegetation/*taxus*_diff.dds
+conifer      objects/natural/vegetation/*juniper*_diff.dds
+conifer      objects/natural/vegetation/*needle*_diff.dds
+grass        objects/natural/vegetation/*grass*_diff.dds
+grass        objects/natural/vegetation/*herb*_diff.dds
+grass        objects/natural/vegetation/*fern*_diff.dds
+grass        objects/natural/vegetation/*reed*_diff.dds
+grass        objects/natural/vegetation/*flower*_diff.dds
+grass        objects/natural/vegetation/*plants*_diff.dds
+grass        objects/natural/vegetation/*weed*_diff.dds
+grass        objects/natural/vegetation/*nettle*_diff.dds
+grass        objects/natural/vegetation/*undergrowth*_diff.dds
+grass        objects/natural/vegetation/*clover*_diff.dds
+deciduous    objects/natural/vegetation/*_diff.dds
+# trees and bushes kept outside the vegetation folder
+conifer      objects/natural/*spruce*_diff.dds
+conifer      objects/natural/*pine*_diff.dds
+conifer      objects/natural/*fir_*_diff.dds
+conifer      objects/natural/*picea*_diff.dds
+conifer      objects/natural/*pinus*_diff.dds
+deciduous    objects/natural/trees/*_diff.dds
+deciduous    objects/natural/bushes/*_diff.dds
+deciduous    objects/natural/*tree*_diff.dds
+deciduous    objects/natural/*bush*_diff.dds
+deciduous    objects/natural/*leaf*_diff.dds
+deciduous    objects/natural/*leaves*_diff.dds
+deciduous    objects/natural/*foliage*_diff.dds
+deciduous    objects/natural/*branch*_diff.dds
+deciduous    objects/*/vegetation/*_diff.dds
+
+# ---- the far landscape: out-of-bounds mountains and hills seen from high places
+exclude      objects/panorama/*sky*
+panorama     objects/panorama/*_diff.dds
+panorama     objects/*panorama*_diff.dds
+panorama     objects/natural/*distant*_diff.dds
+panorama     objects/natural/*mountain*_diff.dds
+panorama     objects/natural/*landscape*_diff.dds
+panorama     objects/natural/*hills*_diff.dds
+panorama     objects/*outskirt*_diff.dds
+panorama     objects/*horizon*_diff.dds
+terrain      textures/*distant*_diff.dds
+terrain      textures/*/macro*_diff.dds
+terrain      levels/*/terrain/*_diff.dds
+
+# ---- ruins and old stone walls: snow on top of the crumbling stones
+rock         objects/*ruin*/*stone*_diff.dds
+rock         objects/*ruins*_diff.dds
+rock         objects/*stonewall*_diff.dds
+rock         objects/*stone_wall*_diff.dds
+rock         objects/*drystone*_diff.dds
+
+# ---- rocks ---------------------------------------------------------------------
+rock         objects/natural/rocks/*_diff.dds
+rock         objects/natural/cliffs/*_diff.dds
+rock         objects/natural/stones/*_diff.dds
+
+# ---- glass ---------------------------------------------------------------------
+glass        objects/*window_glass*_diff.dds
+glass        objects/*glass*_diff.dds
+
+# ---- outdoor props: light hoar frost only ---------------------------------------
+props        objects/*fence*_diff.dds
+props        objects/*palisade*_diff.dds
+props        objects/*cart*_diff.dds
+props        objects/*barrel*_diff.dds
+props        objects/*woodpile*_diff.dds
+props        objects/*firewood*_diff.dds
+props        objects/*ruin*_diff.dds
+props        objects/*plank*_diff.dds
+props        objects/*bench*_diff.dds
+props        objects/*well_*_diff.dds
+props        objects/*haycart*_diff.dds
+props        objects/*sled*_diff.dds
+props        objects/*log_*_diff.dds
+props        objects/*logs*_diff.dds
+props        objects/*stump*_diff.dds

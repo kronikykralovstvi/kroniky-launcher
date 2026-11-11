@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>KronikyKralovstviLauncher</AssemblyName>
-    <Version>1.1.4</Version>
+    <Version>1.1.5</Version>
     <ApplicationIcon>app.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <PublishSingleFile>true</PublishSingleFile>
@@ -15,6 +15,7 @@
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="../Winter/Winter.csproj" />
     <Compile Include="../Mods/*.cs" Link="Mods/%(Filename)%(Extension)" />
     <EmbeddedResource Include="logo.png" LogicalName="KronikyKralovstviLauncher.logo.png" />
     <EmbeddedResource Include="Assets/launcher-design.png" LogicalName="KronikyKralovstviLauncher.launcher-design.png" />

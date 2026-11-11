@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+ <PropertyGroup><TargetFramework>net10.0</TargetFramework><Nullable>disable</Nullable></PropertyGroup>
+ <ItemGroup><EmbeddedResource Include="snow_detail.bin" LogicalName="Winter.snow_detail.bin"/><EmbeddedResource Include="winter_rules.txt" LogicalName="Winter.winter_rules.txt"/></ItemGroup>
+</Project>

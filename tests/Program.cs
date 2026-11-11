@@ -11,6 +11,8 @@ static ModManifest Manifest(params (string path, string body)[] rows) => new() {
 SecurityTests.Run();
 OfficialClientTests.Run();
 NewsFeedTests.Run();
+SeasonTests.Run();
+await WinterProfileTests.Run();
 var root = Path.Combine(Path.GetTempPath(), "kk-mod-tests-" + Guid.NewGuid().ToString("N"));
 Directory.CreateDirectory(root);
 var handler = new FakeHandler(); using var http = new HttpClient(handler);
