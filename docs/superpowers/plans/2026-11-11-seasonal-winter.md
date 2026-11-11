@@ -8,9 +8,11 @@ Spec: User-approved seasonal winter approach in this conversation, November 11 2
 Constraints: Preserve existing gameplay/mods. Test override must not change texture season. Never redistribute derived base-game assets. No silent process termination. Never mutate active game files while running. No automatic destructive server restart.
 Review focus: stale/offline calendar; season change while building; interrupted build; unmanaged winter directory; existing mod_order file.
 
-- [ ] Add validated public season endpoint behind existing authenticated bridge; tests reject stale and inconsistent season/date.
-- [ ] Add actual calendar publication independent of /zimatest, and winter-boundary notices; Lua tests.
-- [ ] Add isolated texture-only builder (disable extras, clothing, loading). Validate generated archive contents locally.
-- [ ] Add launcher season validation and transactional directory switch; tests cover both boundaries, crash states and foreign files.
-- [ ] Build and publish signed launcher, deploy backed-up server/web files, verify hashes and endpoint.
-- [ ] Document restart requirement and explicitly distinguish local tests from actual rendered-world tests.
+- [x] Add validated public season endpoint behind existing authenticated bridge; tests reject stale and inconsistent season/date.
+- [x] Add actual calendar publication independent of /zimatest, and winter-boundary notices; Lua tests.
+- [x] Add isolated texture-only builder (disable extras, clothing, loading). Validate generated archive contents locally.
+- [x] Add launcher season validation and transactional directory switch; tests cover both boundaries, crash states and foreign files.
+- [x] Build and publish signed launcher, deploy backed-up server/web files, verify hashes and endpoint.
+- [x] Document restart requirement and explicitly distinguish local tests from actual rendered-world tests.
+
+Verification: source 39fad77; signed sequence 18; launcher 1.1.5. Live server publication verified. Actual rendered winter scene remains a game-test item, not a claimed result.
