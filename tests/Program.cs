@@ -12,6 +12,7 @@ SecurityTests.Run();
 OfficialClientTests.Run();
 NewsFeedTests.Run();
 SeasonTests.Run();
+await SeasonAvailabilityTests.Run();
 await WinterProfileTests.Run();
 var root = Path.Combine(Path.GetTempPath(), "kk-mod-tests-" + Guid.NewGuid().ToString("N"));
 Directory.CreateDirectory(root);

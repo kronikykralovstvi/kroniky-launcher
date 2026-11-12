@@ -34,4 +34,11 @@ public sealed class SeasonState
         var data=await ReleaseTrust.DownloadSmall(http,"https://kronikykralovstvi.cz/season.php?t="+DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),8192,ct);
         return Parse(data,DateTimeOffset.UtcNow);
     }
+    public static async Task<SeasonState?> FetchAvailable(HttpClient http,CancellationToken ct)
+    {
+        try { return await Fetch(http,ct); }
+        catch(HttpRequestException) { return null; }
+        catch(InvalidDataException) { return null; }
+        catch(OperationCanceledException) when(ct.IsCancellationRequested) { return null; }
+    }
 }
