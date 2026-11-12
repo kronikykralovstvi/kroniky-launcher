@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": "2026.11.11.1",
+  "version": "2026.11.11.2",
   "files": [
     {
       "path": "Data/kk_editor_collection.pak",
@@ -943,6 +943,30 @@
       "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.10.1/27c1a4fdc9965bfd3e022c368b430edbc6a578b965ca098f0db274c149f9895d.bin",
       "sha256": "27c1a4fdc9965bfd3e022c368b430edbc6a578b965ca098f0db274c149f9895d",
       "size": 336
+    },
+    {
+      "path": "Mods/KK_MiningOres/Data/kk_mining_ores.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.11.2/987a756f054d554c78027f4a33f196c56b1a26fa9e026d54281da51b19e802b3.bin",
+      "sha256": "987a756f054d554c78027f4a33f196c56b1a26fa9e026d54281da51b19e802b3",
+      "size": 620
+    },
+    {
+      "path": "Mods/KK_MiningOres/Localization/Czech_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.11.2/a077201e8ff8fe8763cc09cde1584a62973cc047f892183e18cd42e0a55d926a.bin",
+      "sha256": "a077201e8ff8fe8763cc09cde1584a62973cc047f892183e18cd42e0a55d926a",
+      "size": 359
+    },
+    {
+      "path": "Mods/KK_MiningOres/Localization/English_xml.pak",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.11.2/53a90177944bfe14f8a342c6b930c9de38c5db77af80c978ed047b23b1b7c549.bin",
+      "sha256": "53a90177944bfe14f8a342c6b930c9de38c5db77af80c978ed047b23b1b7c549",
+      "size": 347
+    },
+    {
+      "path": "Mods/KK_MiningOres/mod.manifest",
+      "url": "https://github.com/kronikykralovstvi/kroniky-launcher/releases/download/mods-2026.11.11.2/828a883856840e9cb0c4c01de782fa09b4e1ff8f17a2d187e0cd047d86be76ab.bin",
+      "sha256": "828a883856840e9cb0c4c01de782fa09b4e1ff8f17a2d187e0cd047d86be76ab",
+      "size": 341
     }
   ]
 }
