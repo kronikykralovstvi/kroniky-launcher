@@ -58,8 +58,12 @@ internal sealed partial class LauncherForm
     }
     private static void EnsureGameStopped()
     {
+        if(IsGameRunning())throw new IOException("Nejdřív úplně ukonči Kingdom Come: Deliverance II. Mody nelze měnit za běhu hry.");
+    }
+    private static bool IsGameRunning()
+    {
         var processes = Process.GetProcessesByName("KingdomCome");
-        try { if (processes.Length > 0) throw new IOException("Nejdřív úplně ukonči Kingdom Come: Deliverance II. Mody nelze měnit za běhu hry."); }
+        try { return processes.Length>0; }
         finally { foreach (var process in processes) process.Dispose(); }
     }
 }

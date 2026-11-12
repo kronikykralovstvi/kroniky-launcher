@@ -37,7 +37,7 @@ internal sealed partial class LauncherForm
         play.Text="VSTOUPIT DO HRY";Place(play,94,764,532,88,32);
         Place(Label("Před vstupem ověříme potřebné mody.",ContentAlignment.MiddleCenter),90,854,540,24,15);
         Place(Label("Novinky"),720,234,760,57,42);
-        Place(newsCards[0],718,303,820,171,20);Place(newsCards[1],718,487,820,171,20);
+        Place(newsCards[0],718,303,820,240,20);Place(newsCards[1],718,556,820,102,20);
         Place(Label("Aktualizace"),718,680,780,54,38);
         update.Text="Zkontrolovat a opravit mody";Place(update,720,747,500,54,23);
         AddButton("Přehled změn  ›",1233,747,305,54,()=>OpenLink(Website+"novinky/"),22);
@@ -125,8 +125,27 @@ internal sealed partial class LauncherForm
                 card.Summary=i<posts.Length?posts[i].Summary:"Zatím nejsou zveřejněné další novinky. Aktuální dění sleduj na webu a Discordu.";
                 card.ArticleUrl=Website+"novinky/";
                 card.AccessibleName=card.Headline;
-                var old=card.Art;card.Art=null;old?.Dispose();
                 card.Invalidate();
+                var imageUrl=i<posts.Length?posts[i].ImageUrl:null;
+                if(imageUrl!=card.ImageUrl)
+                {
+                    Image? art=null;
+                    try
+                    {
+                        if(imageUrl is not null)
+                        {
+                            using var imageTimeout=new CancellationTokenSource(TimeSpan.FromSeconds(8));
+                            var bytes=await ReleaseTrust.DownloadSmall(http,imageUrl,8*1024*1024,imageTimeout.Token);
+                            using var imageStream=new MemoryStream(bytes);
+                            using var source=Image.FromStream(imageStream,true,true);
+                            if(source.Width>4096||source.Height>4096)throw new InvalidDataException("News image too large");
+                            art=new Bitmap(source);
+                        }
+                        if(IsDisposed){art?.Dispose();return;}
+                        var old=card.Art;card.Art=art;card.ImageUrl=imageUrl;old?.Dispose();card.Invalidate();
+                    }
+                    catch {art?.Dispose(); /* News artwork must never block game updates or opening the article. */}
+                }
             }
         }
         catch
@@ -168,13 +187,21 @@ internal class RoyalButton:Button
 internal sealed class NewsCard:RoyalButton
 {
     public string Headline="Načítám novinky…",Summary="Aktuality z webu Kroniky Království";
-    public string? ArticleUrl;
+    public string? ArticleUrl,ImageUrl;
     public Image? Art;
     protected override void OnPaint(PaintEventArgs e)
     {
-        base.OnPaint(e);int pad=Math.Max(8,Width/70),imageWidth=Art is null?0:Width*35/100;
-        if(Art is not null)e.Graphics.DrawImage(Art,new Rectangle(pad,pad,imageWidth,Height-pad*2));
-        var title=new Rectangle(pad*2+imageWidth,pad,Width-imageWidth-pad*3,Height*43/100);
+        base.OnPaint(e);int pad=Math.Max(8,Width/70);
+        if(Art is not null)
+        {
+            var available=new Rectangle(pad,pad,Width-pad*2,Height-pad*2-26);
+            var scale=Math.Min((float)available.Width/Art.Width,(float)available.Height/Art.Height);
+            int w=(int)(Art.Width*scale),h=(int)(Art.Height*scale);
+            e.Graphics.DrawImage(Art,new Rectangle(available.X+(available.Width-w)/2,available.Y+(available.Height-h)/2,w,h));
+            TextRenderer.DrawText(e.Graphics,Headline+"  ›",Font,new Rectangle(pad,Height-pad-26,Width-pad*2,26),Color.FromArgb(246,222,179),TextFormatFlags.EndEllipsis|TextFormatFlags.HorizontalCenter);
+            return;
+        }
+        var title=new Rectangle(pad*2,pad,Width-pad*3,Height*43/100);
         using var bold=new Font(Font.FontFamily,Font.Size*1.1f,FontStyle.Bold,GraphicsUnit.Pixel);
         TextRenderer.DrawText(e.Graphics,Headline,bold,title,Color.FromArgb(246,222,179),TextFormatFlags.WordBreak|TextFormatFlags.EndEllipsis);
         using var body=new Font("Segoe UI",Math.Max(10,Font.Size*.83f),FontStyle.Regular,GraphicsUnit.Pixel);

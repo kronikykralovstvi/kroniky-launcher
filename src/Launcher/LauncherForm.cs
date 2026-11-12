@@ -21,7 +21,7 @@ internal sealed partial class LauncherForm : Form
 
 	private const string JoinUri = "kcdmp://connect/176.9.102.179:25588";
 
-	private const string AppVersion = "1.1.6";
+	private const string AppVersion = "1.1.7";
 
 	private readonly Label status = new Label
 	{
@@ -75,7 +75,7 @@ internal sealed partial class LauncherForm : Form
 
 	private readonly Label version = new Label
 	{
-		Text = "Launcher 1.1.6",
+		Text = "Launcher 1.1.7",
 		AutoSize = false,
 		Height = 26,
 		Dock = DockStyle.Bottom,
@@ -94,7 +94,7 @@ internal sealed partial class LauncherForm : Form
 
     public LauncherForm()
     {
-        http.DefaultRequestHeaders.UserAgent.ParseAdd("KronikyKralovstviLauncher/1.1.6");
+        http.DefaultRequestHeaders.UserAgent.ParseAdd("KronikyKralovstviLauncher/1.1.7");
         InitializeDesign();
         try { if(File.Exists(playerNameFile))playerName.Text=File.ReadAllText(playerNameFile).Trim(); } catch { }
         play.Click+=async(_,_)=>{if(await CheckAndInstallUpdatesAsync(false))await JoinServerAsync();};
@@ -166,6 +166,7 @@ internal sealed partial class LauncherForm : Form
             }
             var game = SelectGameFolder(false);
             if (game is null) { status.Text = "Nejdřív vyber hlavní složku Kingdom Come: Deliverance II."; return false; }
+            if(IsGameRunning()){status.Text="Hra běží. Kontrolu modů spusť po jejím zavření.";return false;}
             EnsureGameStopped();
             var mods=trusted.Mods;
             var sync = new Mods.ModSync(http, EnsureGameStopped);
